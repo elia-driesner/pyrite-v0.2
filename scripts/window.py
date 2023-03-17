@@ -25,6 +25,6 @@ class Window:
         
     def update(self):
         if self.show_fps:
-            self.display.blit(self.font.write('FPS: 123', 1), (5, 5))
+            self.display.blit(self.font.write(f'FPS: {self.game.clock.fps}', 1), (5, 5))
         self.window.blit(self.display, self.render_offset)
         pygame.display.update()

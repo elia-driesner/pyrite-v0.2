@@ -1,9 +1,11 @@
 import pygame
 import sys
+import time
 
 from scripts.window import Window
 from scripts.world.world import World
 from scripts.world.camera import Camera
+from scripts.clock import Clock
 from data.settings.config import Config
 
 
@@ -14,17 +16,22 @@ class Game:
         
         self.config = Config()
         self.settings = self.config.load_settings()
+        self.frame_length = time.time()
         
+        self.clock = Clock(self.settings['clock'])
         self.window = Window(self, self.settings['window'])
         self.camera = Camera(self, self.settings['camera'])
         self.world = World(self, self.settings['world'])
         
     def update(self):
         """updates the game"""
+        self.frame_length = time.time()
+        self.clock.p_clock.tick(self.clock.max_fps)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.run = False
         self.render()
+        self.clock.calculate_dt(self.frame_length)
                 
     def render(self):
         self.window.reset()
