@@ -18,11 +18,13 @@ class Game:
         self.world = World(self, self.settings['world'])
         
     def update(self):
+        """updates the game"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.run = False
     
     def loop(self):
+        """game loop"""
         while self.run:
             self.update()
         
