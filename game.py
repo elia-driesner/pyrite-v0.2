@@ -3,21 +3,24 @@ import sys
 
 from scripts.window import Window
 from scripts.world.world import World
-from scripts.json_loader import JsonLoader
+from data.settings.config import Config
+
 
 class Game:
     def __init__(self):
         pygame.init()
         self.run = True
         
-        self.json = JsonLoader()
-        self.dest = self.json.read_path('data/settings/dest.json')
+        self.config = Config()
+        self.settings = self.config.load_settings()
         
-        self.window = Window(self, self.json.read(self.dest['window']))
-        self.world = World(self, self.json.read(self.dest['world']))
+        self.window = Window(self, self.settings['window'])
+        self.world = World(self, self.settings['world'])
         
     def update(self):
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.run = False
     
     def loop(self):
         while self.run:
