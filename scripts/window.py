@@ -1,12 +1,12 @@
 import pygame
 
 class Window:
-    def __init__(self, game):
+    def __init__(self, game, config):
         self.game = game
 
-        self.wn_size = game.wn_size
-        self.fullscreen = game.fullscreen
-        self.bg_color = (0, 0, 0)
+        self.wn_size = config['wn-size']
+        self.fullscreen = config['fullscreen']
+        self.bg_color = config['bg-color']
         
         self.display = pygame.Surface(self.wn_size)
         if self.fullscreen:

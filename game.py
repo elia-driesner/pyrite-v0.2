@@ -13,7 +13,8 @@ class Game:
         self.fullscreen = False
         
         self.json = JsonLoader()
-        self.window = Window(self)
-        self.world = World(self)
+        self.dest = self.json.read_path('data/settings/dest.json')
+        self.window = Window(self, self.json.read(self.dest['window']))
+        self.world = World(self, self.json.read(self.dest['world']))
         
 game = Game()
