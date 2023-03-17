@@ -1,4 +1,6 @@
 {
     "window": "window.json",
-    "world": "world.json"
+    "world": "world.json",
+    "camera": "camera.json",
+    "font": "font.json"
 }

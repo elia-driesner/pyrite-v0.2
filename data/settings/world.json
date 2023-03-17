@@ -1,6 +1,6 @@
 {
     "tile-size": 16,
     "tile-scale": 16,
-    "map-path": "data/assets/map/map-data.csv",
-    "tileset-path": "data/assets/map/tileset.png"
+    "map-path": "data/map/map-data.csv",
+    "tileset-path": "data/map/tileset.png"
 }
