@@ -1,5 +1,7 @@
 {
     "bg-color": [0, 0, 0],
     "wn-size": [960, 540],
-    "fullscreen": false
+    "fullscreen": false,
+    "show-fps": true,
+    "title": "Game Engine"
 }

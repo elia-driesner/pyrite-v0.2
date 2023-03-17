@@ -1,5 +1,5 @@
 import pygame
-from scripts.images import Sprite
+from scripts.images.sprite import Sprite
 
 class CustomFont:
     def __init__(self, config):
@@ -9,6 +9,7 @@ class CustomFont:
         self.characters = []
         self.char_surf = pygame.Surface(((100, 500)))
         self.char_surf.set_colorkey((0,0,0))
+        self.load_font()
         
     def load_font(self):
         for i in range(0, 26):
@@ -18,7 +19,7 @@ class CustomFont:
             self.number = self.sprite.cut(j, 1)
             self.characters.append(self.number)
             
-    def write_text(self, text, font_size):
+    def write(self, text, font_size):
         text = str(text)
         size = 0
         for char in text:
