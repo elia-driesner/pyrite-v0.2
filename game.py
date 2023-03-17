@@ -8,13 +8,20 @@ from scripts.json_loader import JsonLoader
 class Game:
     def __init__(self):
         pygame.init()
-        
-        self.wn_size = [960, 540]
-        self.fullscreen = False
+        self.run = True
         
         self.json = JsonLoader()
         self.dest = self.json.read_path('data/settings/dest.json')
+        
         self.window = Window(self, self.json.read(self.dest['window']))
         self.world = World(self, self.json.read(self.dest['world']))
         
+    def update(self):
+        pass
+    
+    def loop(self):
+        while self.run:
+            self.update()
+        
 game = Game()
+game.loop()
