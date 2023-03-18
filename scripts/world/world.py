@@ -14,5 +14,8 @@ class World:
 
         self.map_output = self.map.draw_map(self.game.camera.scroll)
         self.map_surf = self.map_output[0]
+        
+    def update(self):
+        self.bg.update()
     
         

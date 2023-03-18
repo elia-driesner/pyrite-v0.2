@@ -30,12 +30,14 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.run = False
+        self.world.update()
         self.render()
         self.clock.calculate_dt(self.frame_length)
                 
     def render(self):
         self.window.reset()
         self.world.bg.render()
+        self.world.map_surf.set_colorkey((0, 0, 0))
         self.window.display.blit(self.world.map_surf, (0, 0))
         
         self.window.update()
