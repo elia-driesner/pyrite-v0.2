@@ -2,5 +2,8 @@
     "tile-size": 16,
     "tile-scale": 16,
     "map-path": "data/map/map-data.csv",
-    "tileset-path": "data/map/tileset.png"
+    "tileset-path": "data/map/tileset.png",
+
+    "bg-line-angle": -30,
+    "bg-line-thickness": 30
 }

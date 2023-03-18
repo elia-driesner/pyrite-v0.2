@@ -5,7 +5,15 @@ class Camera:
         self.game = game
         self.scroll = [0 ,0]
         self.scroll_smoothing = config['scroll-smoothing']
+        self.focus = None
         
     def calc_scroll(self):
+        self.scroll[0] += int((self.focus.x  - self.scroll[0] - (self.game.window.wn_size[0] / 2)) / self.camara_smoothing)
+        self.scroll[1] += int((self.focus.y - self.scroll[1] - (self.game.window.wn_size[1] / 2)) / self.camara_smoothing)
+    
+    def set_focus(self, entity):
+        self.focus = entity
+    
+    def remove_focus(self):
+        self.focus = None
         
-        self.scroll = [0, 0]

@@ -35,6 +35,7 @@ class Game:
                 
     def render(self):
         self.window.reset()
+        self.world.bg.render()
         self.window.display.blit(self.world.map_surf, (0, 0))
         
         self.window.update()
