@@ -3,8 +3,8 @@ import sys
 import time
 
 from pyrite.window import Window
-from scripts.world.world import World
-from scripts.world.camera import Camera
+from pyrite.world.world import World
+from pyrite.world.camera import Camera
 from pyrite.clock import Clock
 from data.settings.config import Config
 

@@ -1,6 +1,6 @@
 import pygame, os, math
 from csv import reader
-from scripts.images.sprite import Sprite
+from ..images.sprite import Sprite
 
 class Map():
     def __init__(self, tile_size, wn_size, map_path, sprite_path):

@@ -1,5 +1,5 @@
 import pygame
-from scripts.images.sprite import Sprite
+from pyrite.images.sprite import Sprite
 
 class Entity:
     def __init__(self, pos, size):
