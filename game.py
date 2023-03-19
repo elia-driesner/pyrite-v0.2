@@ -2,10 +2,10 @@ import pygame
 import sys
 import time
 
-from scripts.window import Window
+from pyrite.window import Window
 from scripts.world.world import World
 from scripts.world.camera import Camera
-from scripts.clock import Clock
+from pyrite.clock import Clock
 from data.settings.config import Config
 
 
