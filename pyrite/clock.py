@@ -10,9 +10,9 @@ class Clock:
         self.dt = 0
         self.frame_length = 0
         
-    def calculate_dt(self, frame_length):
+    def calculate_dt(self):
         """Calculates the deltatime between each frame"""
-        self.dt = time.time() - frame_length
+        self.dt = time.time() - self.frame_length
         self.dt *= 60
         self.fps = str(int(self.p_clock.get_fps()))
     

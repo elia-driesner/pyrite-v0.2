@@ -5,11 +5,12 @@ class Input:
     def __init__(self, game, config):
         self.config = config
         self.game = game
-        self.mouse_state = {'left': False, 'left_hold': False, 'left_release': False, 
-                            'right': False, 'right_hold': False, 'right_release': False,
-                            'scroll_up': False, 'scroll_down': False}
+        self.key_events = {}
+        self.mouse_state = {}
         
-        self.key_presses = []
+        for binding in self.config:
+            self.key_events[binding] = False
+        print(self.key_events)
         
         self.mouse_pos = (0, 0)
     
@@ -20,10 +21,11 @@ class Input:
                 pygame.quit()
                 sys.exit(0)
             self.update(event)
-        print(self.key_presses, self.mouse_pos, self.mouse_state)
+        # print(self.key_presses, self.mouse_pos, self.mouse_state)
         
     def reset(self):
-        self.key_presses = []
+        for binding in self.config:
+            self.key_events[binding] = False
         self.mouse_state = {'left': False, 'left_hold': False, 'left_release': False, 
                             'right': False, 'right_hold': False, 'right_release': False, 
                             'scroll_up': False, 'scroll_down': False}
@@ -33,8 +35,11 @@ class Input:
         self.reset()
         
         if event.type == pygame.KEYDOWN:
-            if event.key in self.config['keybinds']:
-                self.key_presses.append(event.key)
+            for keybind in self.config:
+                binding = self.config[keybind]['binding']
+                if binding[0] == 'keyboard':
+                    if event.key in binding[1]:
+                        print(keybind)
         
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:

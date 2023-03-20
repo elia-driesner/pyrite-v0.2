@@ -15,11 +15,12 @@ class Game:
     def update(self):
         """updates the game"""
         self.clock.frame_length = time.time()
+        self.clock.frame_length = time.time()
         self.clock.p_clock.tick(self.clock.max_fps)
         self.input.events()
         self.world.update()
         self.render()
-        self.clock.calculate_dt(self.frame_length)
+        self.clock.calculate_dt()
                 
     def render(self):
         self.window.reset()
