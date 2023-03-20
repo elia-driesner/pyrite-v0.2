@@ -9,14 +9,12 @@ class Game:
     def __init__(self):
         pygame.init()
         self.run = True
-        self.frame_length = time.time()
-        
         init(self, '')
         
         
     def update(self):
         """updates the game"""
-        self.frame_length = time.time()
+        self.clock.frame_length = time.time()
         self.clock.p_clock.tick(self.clock.max_fps)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

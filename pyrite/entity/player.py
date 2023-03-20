@@ -1,6 +1,6 @@
 import pygame
 
-from scripts.entity.entity import Entity
+from ..entity.entity import Entity
 
 class Player(Entity):
     def __init__(self, pos, size, type=None, **kw):
