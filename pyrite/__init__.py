@@ -3,6 +3,7 @@ from .world.world import World
 from .world.camera import Camera
 from .clock import Clock
 from .assets.config import Config
+from .input.inputs import Input
 
 def init(game, config_path):
     game.config = Config()
@@ -12,3 +13,4 @@ def init(game, config_path):
     game.window = Window(game, game.settings['window'])
     game.camera = Camera(game, game.settings['camera'])
     game.world = World(game, game.settings['world'])
+    game.input = Input(game, game.settings['input'])

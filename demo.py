@@ -16,9 +16,7 @@ class Game:
         """updates the game"""
         self.clock.frame_length = time.time()
         self.clock.p_clock.tick(self.clock.max_fps)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.run = False
+        self.input.events()
         self.world.update()
         self.render()
         self.clock.calculate_dt(self.frame_length)

@@ -3,5 +3,6 @@
     "world": "world.json",
     "camera": "camera.json",
     "font": "font.json",
-    "clock": "clock.json"
+    "clock": "clock.json",
+    "input": "input.json"
 }
