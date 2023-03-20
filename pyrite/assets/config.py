@@ -4,9 +4,9 @@ class Config:
     def __init__(self):
         self.json_loader = JsonLoader()
         
-    def load_settings(self):
+    def load_settings(self, path):
         """loads the settings from many diffrent files, linked in the dest.json file"""
-        self.files = self.json_loader.read('dest.json')
+        self.files = self.json_loader.read(path + '/dest.json')
         self.settings = {}
         
         for file in self.files:

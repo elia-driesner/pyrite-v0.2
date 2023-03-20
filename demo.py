@@ -2,26 +2,17 @@ import pygame
 import sys
 import time
 
-from pyrite.world.window import Window
-from pyrite.world.world import World
-from pyrite.world.camera import Camera
-from pyrite.clock import Clock
-from pyrite.assets.config import Config
+from pyrite import *
 
 
 class Game:
     def __init__(self):
         pygame.init()
         self.run = True
-        
-        self.config = Config()
-        self.settings = self.config.load_settings()
         self.frame_length = time.time()
         
-        self.clock = Clock(self.settings['clock'])
-        self.window = Window(self, self.settings['window'])
-        self.camera = Camera(self, self.settings['camera'])
-        self.world = World(self, self.settings['world'])
+        init(self, '')
+        
         
     def update(self):
         """updates the game"""
