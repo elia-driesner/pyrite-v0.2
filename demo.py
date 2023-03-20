@@ -2,11 +2,11 @@ import pygame
 import sys
 import time
 
-from pyrite.window import Window
+from pyrite.world.window import Window
 from pyrite.world.world import World
 from pyrite.world.camera import Camera
 from pyrite.clock import Clock
-from data.settings.config import Config
+from pyrite.assets.config import Config
 
 
 class Game:

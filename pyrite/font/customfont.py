@@ -1,5 +1,5 @@
 import pygame
-from ..images.sprite import Sprite
+from ..assets.sprite import Sprite
 
 class CustomFont:
     def __init__(self, config):
