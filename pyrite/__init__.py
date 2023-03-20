@@ -4,6 +4,7 @@ from .world.camera import Camera
 from .clock import Clock
 from .assets.config import Config
 from .input.inputs import Input
+from .pyrite import *
 
 def init(game, config_path):
     game.config = Config()

@@ -21,25 +21,40 @@ class Input:
                 pygame.quit()
                 sys.exit(0)
             self.update(event)
-        # print(self.key_presses, self.mouse_pos, self.mouse_state)
         
-    def reset(self):
+    def hold_reset(self):
         for binding in self.config:
-            self.key_events[binding] = False
-        self.mouse_state = {'left': False, 'left_hold': False, 'left_release': False, 
-                            'right': False, 'right_hold': False, 'right_release': False, 
-                            'scroll_up': False, 'scroll_down': False}
+            if self.config[binding]['trigger'] == 'hold':
+                self.key_events[binding] = False
+
+    def soft_reset(self):
+        for binding in self.config:
+            if self.config[binding]['trigger'] == 'press':
+                self.key_events[binding] = False
+
+        self.mouse_state['left'] = False
+        self.mouse_state['right'] = False
+        self.mouse_state['left_release'] = False
+        self.mouse_state['right_release'] = False
+        self.mouse_state['scroll_up'] = False
+        self.mouse_state['scroll_down'] = False
         
     def update(self, event):
         self.mouse_pos = pygame.mouse.get_pos()
-        self.reset()
+        self.soft_reset()
         
         if event.type == pygame.KEYDOWN:
             for keybind in self.config:
                 binding = self.config[keybind]['binding']
                 if binding[0] == 'keyboard':
                     if event.key in binding[1]:
-                        print(keybind)
+                        self.key_events[keybind] = True
+        if event.type == pygame.KEYUP:
+            for keybind in self.config:
+                binding = self.config[keybind]['binding']
+                if binding[0] == 'keyboard':
+                    if event.key in binding[1]:
+                        self.key_events[keybind] = False
         
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
