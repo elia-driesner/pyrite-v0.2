@@ -8,7 +8,10 @@ class Clock:
         self.p_clock = pygame.time.Clock()
         self.fps = self.max_fps
         self.dt = 0
-        self.frame_length = 0
+        self.frame_length = time.time()
+    
+    def set_timepoint(self):
+        self.frame_length = time.time()
         
     def calculate_dt(self):
         """Calculates the deltatime between each frame"""
