@@ -1,6 +1,6 @@
 import pygame
-from pyrite.assets.sprite import Sprite
-from pyrite.assets.animation_loader import Animation
+from pyrite.sprite import Sprite
+from pyrite.animation_loader import Animation
 
 class Entity:
     def __init__(self, pos, size):
@@ -22,19 +22,17 @@ class Entity:
         """draws the entity on screen"""
         wn.blit(self.image, (self.x - scroll[0], self.y - scroll[1]))
         
-    def load_animation(self):
+    def load_animation(self, path, image_size):
         self.animation_loader = Animation()
-        self.animation_loader.get_animation()
+        self.animation_loader.get_animation(path, image_size)
     
-    def load_images(self, path, image_size, sprite_rows, spite_cols):
+    def load_images(self, path, image_size, animated=False):
         """Gets images from sprite and saves them in a array"""
         self.images = [] 
-        self.sprite = Sprite(pygame.image.load(str(path)), image_size, (self.width, self.height))
-        for i in range(0, sprite_rows):
-            row = []
-            for j in range(0, spite_cols):
-                row.append(self.sprite.cut(j, i))
-            self.images.append(row)
-        self.image = self.images[0][0]
-        self.image.set_colorkey((0,0,0))
-        self.rect = self.image.get_rect()
+        if animated:
+            self.load_animation(path, image_size)
+        else:
+            self.image = pygame.transform.scale(pygame.image.load(path), image_size)
+            self.image.set_colorkey((0,0,0))
+            self.rect = self.image.get_rect()
+        

@@ -1,10 +1,10 @@
-from .world.window import Window
-from .world.world import World
-from .world.camera import Camera
+from .window import Window
+from .world import World
+from .camera import Camera
 from .clock import Clock
-from .assets.config import Config
-from .input.inputs import Input
-from .entity.player import Player
+from .config import Config
+from .inputs import Input
+from .player import Player
 from .pyrite import *
 
 def init(game, config_path):

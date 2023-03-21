@@ -10,7 +10,6 @@ class Input:
         
         for binding in self.config:
             self.key_events[binding] = False
-        print(self.key_events)
         
         self.mouse_pos = (0, 0)
     

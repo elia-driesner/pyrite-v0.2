@@ -1,5 +1,5 @@
 import pygame
-from ..assets.sprite import Sprite
+from .sprite import Sprite
 
 class Animation:
     def __init__(self):

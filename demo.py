@@ -11,7 +11,7 @@ class Game:
         self.run = True
         pyrite.init(self, '')
         
-        self.player = pyrite.Player((100, 100), (32, 64))
+        self.player = pyrite.Player((100, 100), (32, 64), image_info=('data/' ,True))
                 
     def render(self):
         self.window.reset()

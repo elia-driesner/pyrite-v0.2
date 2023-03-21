@@ -1,6 +1,6 @@
 import pygame
-from ..world.map import Map
-from ..world.background import Background
+from .map import Map
+from .background import Background
 
 class World:
     def __init__(self, game, config):

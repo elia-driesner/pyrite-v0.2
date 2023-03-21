@@ -1,4 +1,4 @@
-from pyrite.assets.json_loader import JsonLoader
+from pyrite.json_loader import JsonLoader
 
 class Config:
     def __init__(self):
