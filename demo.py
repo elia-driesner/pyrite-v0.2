@@ -10,6 +10,8 @@ class Game:
         pygame.init()
         self.run = True
         pyrite.init(self, '')
+        
+        self.player = pyrite.Player((100, 100), (32, 64))
                 
     def render(self):
         self.window.reset()

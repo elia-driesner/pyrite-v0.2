@@ -1,5 +1,6 @@
 import pygame
 from pyrite.assets.sprite import Sprite
+from pyrite.assets.animation_loader import Animation
 
 class Entity:
     def __init__(self, pos, size):
@@ -20,6 +21,10 @@ class Entity:
     def draw(self, wn, scroll):
         """draws the entity on screen"""
         wn.blit(self.image, (self.x - scroll[0], self.y - scroll[1]))
+        
+    def load_animation(self):
+        self.animation_loader = Animation()
+        self.animation_loader.get_animation()
     
     def load_images(self, path, image_size, sprite_rows, spite_cols):
         """Gets images from sprite and saves them in a array"""
