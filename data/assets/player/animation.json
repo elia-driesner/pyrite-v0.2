@@ -1,18 +1,22 @@
 {
     "idle": {
         "row": 0,
-        "frame_duration": 20
+        "frame_duration": 20,
+        "custom_length": []
     },
     "run": {
         "row": 3,
-        "frame_duration": 5
+        "frame_duration": 5,
+        "custom_length": []
     },
     "jump": {
         "row": 5,
-        "frame_duration": 20
+        "frame_duration": 20,
+        "custom_length": [[0, 10]]
     },
     "fall": {
         "row": 6,
-        "frame_duration": 5
+        "frame_duration": 5,
+        "custom_length": []
     }
 }
