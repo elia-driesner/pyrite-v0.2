@@ -14,8 +14,8 @@ class Animation:
         image_rows = image_size[1] // sprite_size[1]
         
         frames = []
-        
         frame = None
+        
         for row in range(0, image_rows):
             temp_row = []
             for col in range(0, image_cols):

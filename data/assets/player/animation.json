@@ -1,0 +1,18 @@
+{
+    "idle": {
+        "row": 0,
+        "frame_duration": 20
+    },
+    "run": {
+        "row": 3,
+        "frame_duration": 5
+    },
+    "jump": {
+        "row": 5,
+        "frame_duration": 20
+    },
+    "fall": {
+        "row": 6,
+        "frame_duration": 5
+    }
+}
