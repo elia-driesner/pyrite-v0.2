@@ -8,6 +8,10 @@ def update(game):
     game.input.events()
     
     game.world.update()
+    game.window.reset()
+    game.world.bg.render()
+    game.world.map_surf.set_colorkey((0, 0, 0))
+    game.window.display.blit(game.world.map_surf, (0, 0))
     game.render()
     
     game.clock.calculate_dt()

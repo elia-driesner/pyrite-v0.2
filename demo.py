@@ -14,10 +14,8 @@ class Game:
         self.player = pyrite.Player((100, 100), (16, 32), image_info=('data/assets/player/player_sprite.png' ,'data/assets/player/animation.json' ,True))
                 
     def render(self):
-        self.window.reset()
-        self.world.bg.render()
-        self.world.map_surf.set_colorkey((0, 0, 0))
-        self.window.display.blit(self.world.map_surf, (0, 0))
+        self.player.update()
+        self.window.display.blit(self.player.image, (110, 110))
         
         self.window.update()
     

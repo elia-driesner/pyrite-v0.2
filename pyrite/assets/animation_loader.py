@@ -4,7 +4,9 @@ from .sprite import Sprite
 
 class Animation:
     def __init__(self):
-        pass
+        self.aniamtion_frame = 0
+        self.animation = 'idle'
+        self.frames = {}
 
     def get_animation(self, img_path, rules_path, sprite_size):
         """loads the animation from spritesheet and saves infos given in json file with the frames"""
@@ -27,9 +29,10 @@ class Animation:
         image_cols = image_size[0] // sprite_size[0]
         image_rows = image_size[1] // sprite_size[1]
         
-        frames = []
+        frames = {
+            "unnamed_frames": []
+        }
         frame = None
-        custon_length = None
         
         for row in range(0, image_rows):
             temp_row = []
@@ -51,7 +54,32 @@ class Animation:
                                 temp_row[custom_rule[0]]['frame_length'] = custom_rule[1]
                 
                         
-                    frames.append({"animations": temp_row, "settings": animation_rules[row]})
+                    frames[animation_rules[row]["name"]] = temp_row
                 else:
-                    frames.append({"animations": temp_row, "settings": {}})
-        print(frames)
+                    frames["unnamed_frames"].append(temp_row)
+        self.frames = frames
+    
+    def update(self, animation, player):
+        self.animation = animation
+        self.player = player
+        
+        total_frames = 0
+        frame_steps = {}
+        
+        frame_list = self.frames[animation]
+        
+        for frame in frame_list:
+            total_frames += frame['frame_length']
+            frame_steps[total_frames] = frame
+        
+        for frame in reversed(frame_steps):
+            if self.aniamtion_frame <= frame :
+                self.player.image = frame_steps[frame]['frame']
+                
+                
+        if self.aniamtion_frame > total_frames:
+                self.aniamtion_frame = 0
+        self.aniamtion_frame += 1
+        
+        
+    
