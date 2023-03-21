@@ -13,4 +13,4 @@ class Player(Entity):
         super().__init__(pos, size)
         
         if image_info:
-            self.load_images(image_info[0], (self.width, self.height), image_info[2])
+            self.load_images(image_info[0], (self.width, self.height), image_info[1])

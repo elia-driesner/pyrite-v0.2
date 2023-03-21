@@ -2,10 +2,10 @@ from .window import Window
 from .world import World
 from .camera import Camera
 from .clock import Clock
-from .config import Config
+from .assets.config import Config
 from .inputs import Input
 from .player import Player
-from .pyrite import *
+from .functions import *
 
 def init(game, config_path):
     game.config = Config()

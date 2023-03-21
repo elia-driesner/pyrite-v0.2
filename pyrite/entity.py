@@ -1,6 +1,6 @@
 import pygame
-from pyrite.sprite import Sprite
-from pyrite.animation_loader import Animation
+from pyrite.assets.sprite import Sprite
+from pyrite.assets.animation_loader import Animation
 
 class Entity:
     def __init__(self, pos, size):

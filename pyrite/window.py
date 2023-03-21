@@ -1,5 +1,5 @@
 import pygame
-from .customfont import CustomFont
+from .assets.customfont import CustomFont
 
 class Window:
     def __init__(self, game, config):
