@@ -11,6 +11,13 @@ class Entity:
         self.image = None
         self.rect = None
         self.mask = None
+        
+        self.directions = {
+            'left': False,
+            'right': False,
+            'jump': False,
+            'fall': False,
+        }
     
     def update_rect(self):
         self.rect.x, self.rect.y = self.x, self.y

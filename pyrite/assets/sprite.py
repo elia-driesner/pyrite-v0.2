@@ -12,10 +12,18 @@ class Sprite:
             self.colorkey = colorkey
         
 
-    def cut(self, frame, layer):
+    def cut(self, frame, layer, custom_size=None):
         """cuts the given sprite and returns requested frame"""
-        image = pygame.Surface((self.width, self.height))
-        image.blit(self.sprite, (0, 0), ((frame * self.width), (self.height * layer), self.width, self.height))
+        
+        if custom_size:
+            width = custom_size[0]
+            height = custom_size[1]
+        else:
+            width = self.width
+            height = self.height
+        
+        image = pygame.Surface((width, height))
+        image.blit(self.sprite, (0, 0), ((frame * width), (self.height * layer), width, height))
         image = pygame.transform.scale((image), self.scale)
         
         if not self.colorkey == "1":

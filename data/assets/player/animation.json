@@ -2,26 +2,37 @@
     "idle": {
         "row": 0,
         "frame_duration": 100,
-        "custom_length": []
+        "custom_length": [],
+        "size": [16, 32]
     },
     "run": {
         "row": 3,
         "frame_duration": 25,
-        "custom_length": []
+        "custom_length": [],
+        "size": [16, 32]
     },
     "jump": {
         "row": 5,
         "frame_duration": 40,
-        "custom_length": [[2, 9999999999]]
+        "custom_length": [[2, 9999999999]],
+        "size": [16, 32]
     },
     "fall": {
         "row": 6,
         "frame_duration": 5,
-        "custom_length": [[2, 9999999999]]
+        "custom_length": [[2, 9999999999]],
+        "size": [16, 32]
     },
     "land": {
         "row": 7,
         "frame_duration": 40,
-        "custom_length": []
+        "custom_length": [],
+        "size": [16, 32]
+    },
+    "wide-run": {
+        "row": 8,
+        "frame_duration": 25,
+        "custom_length": [],
+        "size": [32, 32]
     }
 }
