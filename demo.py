@@ -15,7 +15,7 @@ class Game:
                 
     def render(self):
         self.player.update()
-        self.window.display.blit(self.player.image, (110, 110))
+        self.player.draw(self.window.display, (0, 0))
         
         self.window.update()
     

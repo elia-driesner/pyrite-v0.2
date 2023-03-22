@@ -36,3 +36,5 @@ class Entity:
             self.image.set_colorkey((0,0,0))
             self.rect = self.image.get_rect()
         
+    def move(self, directions):
+        pass

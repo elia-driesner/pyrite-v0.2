@@ -80,6 +80,3 @@ class Animation:
         if self.aniamtion_frame > total_frames:
                 self.aniamtion_frame = 0
         self.aniamtion_frame += 1
-        
-        
-    

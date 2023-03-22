@@ -15,8 +15,7 @@ class Player(Entity):
         if image_info:
             self.load_images(image_info[0], image_info[1], (self.width, self.height), image_info[2])
             
-        self.animation = 'idle'
+        self.animation = 'run'
         
     def update(self):
         self.animation_loader.update(self.animation, self)
-            
