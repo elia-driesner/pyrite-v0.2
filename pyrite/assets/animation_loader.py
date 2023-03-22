@@ -7,6 +7,10 @@ class Animation:
         self.aniamtion_frame = 0
         self.animation = 'idle'
         self.frames = {}
+        
+    def set_animation(self, animation):
+        self.animation = animation
+        self.aniamtion_frame = 0
 
     def get_animation(self, img_path, rules_path, sprite_size):
         """loads the animation from spritesheet and saves infos given in json file with the frames"""
@@ -51,24 +55,39 @@ class Animation:
                     if len(custom_length) != 0:
                         for custom_rule in custom_length:
                             if temp_row[custom_rule[0]]:
-                                temp_row[custom_rule[0]]['frame_length'] = custom_rule[1]
-                
-                        
+                                temp_row[custom_rule[0]]['frame_length'] = custom_rule[1]         
                     frames[animation_rules[row]["name"]] = temp_row
                 else:
                     frames["unnamed_frames"].append(temp_row)
         self.frames = frames
     
-    def update(self, animation, player):
-        self.animation = animation
+    def append_animation(self, image_path, frame_size, frame_length, animation_name):
+        sprite = pygame.image.load(image_path)
+        image_size = sprite.get_size()
+        image_cols = image_size[0] // frame_size[0]
+        
+        row = []
+        frame = 0
+        
+        for i in range(0, image_cols):
+            image = pygame.Surface(frame_size)
+            image.blit(sprite, (0, 0), ((frame_size[0] * frame), 0, frame_size[0], frame_size[1]))
+            image = pygame.transform.scale((image), frame_size)
+            image.set_colorkey((0, 0, 0))
+            row.append({'frame': image, 'frame_length': frame_length})
+            frame += 1
+        self.frames[animation_name] = row
+    
+    def update(self, player):
         self.player = player
         
         total_frames = 0
         frame_steps = {}
         
-        frame_list = self.frames[animation]
+        frame_list = self.frames[self.animation]
         
         for frame in frame_list:
+            print(frame)
             total_frames += frame['frame_length']
             frame_steps[total_frames] = frame
         
