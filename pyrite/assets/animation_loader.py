@@ -7,6 +7,7 @@ class Animation:
         self.aniamtion_frame = 0
         self.animation = 'idle'
         self.frames = {}
+        self.current_direction = 'right'
         
     def set_animation(self, animation):
         self.animation = animation
@@ -92,7 +93,10 @@ class Animation:
         
         for frame in reversed(frame_steps):
             if self.aniamtion_frame <= frame :
-                self.player.image = frame_steps[frame]['frame']
+                temp_frame = frame_steps[frame]['frame']
+                if self.player.direction != self.current_direction:
+                    temp_frame = pygame.transform.flip(temp_frame, True, False)    
+                self.player.image = temp_frame
                 
                 
         if self.aniamtion_frame > total_frames:
