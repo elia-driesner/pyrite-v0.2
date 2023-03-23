@@ -87,7 +87,6 @@ class Animation:
         frame_list = self.frames[self.animation]
         
         for frame in frame_list:
-            print(frame)
             total_frames += frame['frame_length']
             frame_steps[total_frames] = frame
         
