@@ -25,6 +25,7 @@ class Entity:
             self.on_ground = False                      
             self.is_falling = False
             self.is_jumping = False
+            self.double_jump = True
             self.last_jump = time.time()
     
     def update_rect(self):
@@ -58,6 +59,7 @@ class Entity:
         
     def jump(self):
         """checks if player is able to jump and sets the velocity"""
+        print('jump')
         if self.on_ground:
             self.last_jump = time.time()
             self.double_jump = True
@@ -79,6 +81,9 @@ class Entity:
         movement_x = 0
         movement_y = 0
         
+        self.position.x = self.x
+        self.position.y = self.y
+        
         # x movement
         self.acceleration.x = 0
         if keys['move_left']:
@@ -97,6 +102,7 @@ class Entity:
         movement_x = self.position.x - self.x
 
         # y movement
+        # print(keys)
         if keys['jump']:
             self.jump()
         self.velocity.y += self.acceleration.y * dt
@@ -112,8 +118,7 @@ class Entity:
             self.is_jumping = False
         movement_y = self.position.y - self.y
 
-        move(self, movement_x, movement_y)
-
+        move(self, movement_x, movement_y, tile_list)
         self.update_rect()
     
         

@@ -27,9 +27,9 @@ class Input:
                 self.key_events[binding] = False
 
     def soft_reset(self):
-        for binding in self.config:
-            if self.config[binding]['trigger'] == 'press':
-                self.key_events[binding] = False
+        # for binding in self.config:
+        #     if self.config[binding]['trigger'] == 'press':
+        #         self.key_events[binding] = False
 
         self.mouse_state['left'] = False
         self.mouse_state['right'] = False
