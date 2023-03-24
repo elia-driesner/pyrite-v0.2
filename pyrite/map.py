@@ -46,7 +46,10 @@ class Map():
                     self.colums += 1
                     if tile != '-1' and tile != '39' and tile != '40':
                             self.surface.blit(self.images[int(tile)], (x - scroll[0], y - scroll[1]))
-                            self.tile_list.append([self.images[int(tile)], (x - scroll[0], y - scroll[1])])
+                            img = self.images[int(tile)]
+                            img_rect = img.get_rect()
+                            img_rect.x, img_rect.y = x, y
+                            self.tile_list.append([img, img_rect])
                     if tile == '39':
                         player_spawn = (x, y - 30)
                     if tile == '40':

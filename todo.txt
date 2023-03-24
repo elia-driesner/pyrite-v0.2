@@ -5,3 +5,6 @@ movement
 light
 
 particles
+
+
+flip image in every frame

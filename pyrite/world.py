@@ -13,6 +13,7 @@ class World:
         self.bg = Background(self.game, self.config)
 
         self.map_output = self.map.draw_map(self.game.camera.scroll)
+        self.tile_list = self.map_output[1]
         self.map_surf = self.map_output[0]
         
     def update(self):

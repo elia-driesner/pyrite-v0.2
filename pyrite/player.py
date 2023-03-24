@@ -23,6 +23,7 @@ class Player(Entity):
         self.animation_loader.update(self)
         self.rect = self.image.get_rect()
         
-    def update(self, keys, dt):
-        self.move(self, keys, dt)
+    def update(self, keys, dt, tile_list):
+        self.calc_movement(self, keys, dt, tile_list)
         self.animation_loader.update(self)
+        
