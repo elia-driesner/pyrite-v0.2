@@ -10,6 +10,7 @@ def tile_collision(rect, tiles):
 def move(entity, x_movement, y_movement, tile_list):
     entity = entity
     entity.update_rect()
+    entity.on_ground = False
     
     entity.rect.x += x_movement
     collisions = tile_collision(entity.rect, tile_list)
@@ -25,10 +26,11 @@ def move(entity, x_movement, y_movement, tile_list):
     collisions = tile_collision(entity.rect, tile_list)
     for tile in collisions:
         if y_movement > 0: # falling, hit from top
+            print('top')
             entity.rect.bottom = tile[1].top
-            entity.velocity.y = 0
+            entity.on_ground = True
         if y_movement < 0: # jumping, hit from botom
             entity.rect.top = tile[1].bottom
-            entity.velocity.x = 0
+            entity.velocity.y = 0
     
     entity.update_position()

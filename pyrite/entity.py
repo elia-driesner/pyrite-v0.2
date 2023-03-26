@@ -18,7 +18,7 @@ class Entity:
         
         if movement:
             self.speed = movement['speed']
-            self.jump_height = movement['jump_heigth'] *-1
+            self.jump_height = movement['jump_heigth'] 
             self.gravity, self.friction = movement['gravity'], movement['friction']
             self.position, self.velocity = pygame.math.Vector2(self.x, self.y), pygame.math.Vector2(0, 0)
             self.acceleration = pygame.math.Vector2(0, self.gravity)
@@ -58,24 +58,23 @@ class Entity:
         if abs(self.velocity.x) < .01: self.velocity.x = 0
         
     def jump(self):
-        """checks if player is able to jump and sets the velocity"""
-        print('jump')
         if self.on_ground:
+            print('jump')
             self.last_jump = time.time()
             self.double_jump = True
             self.is_jumping = True
             self.is_falling = False
-            self.velocity.y -= 17
+            self.velocity.y -= self.jump_height
             self.rect.y = self.y
             self.on_ground = False
         elif self.double_jump and self.on_ground == False and time.time() - self.last_jump > 0.3:
             self.double_jump = False
             self.is_jumping = True
             self.is_falling = False
-            self.velocity.y -= 17
+            self.velocity.y -= self.jump_height
             self.on_ground = False
-        if self.velocity.y <= -32.5:
-            self.velocity.y = -32
+        if self.velocity.y <= self.jump_height * 2 - 1:
+            self.velocity.y = self.jump_height
         
     def calc_movement(self, ent, keys, dt, tile_list):
         movement_x = 0
@@ -102,7 +101,6 @@ class Entity:
         movement_x = self.position.x - self.x
 
         # y movement
-        # print(keys)
         if keys['jump']:
             self.jump()
         self.velocity.y += self.acceleration.y * dt

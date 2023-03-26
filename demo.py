@@ -1,6 +1,7 @@
 import pygame
 import sys
 import time
+import os
 
 import pyrite
  
@@ -22,6 +23,7 @@ class Game:
     def loop(self):
         """game loop"""
         while self.run:
+            self.input.events()
             pyrite.update(self)
         
 game = Game()

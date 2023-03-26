@@ -14,6 +14,7 @@ class Input:
         self.mouse_pos = (0, 0)
     
     def events(self):
+        self.soft_reset()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.game.run = False
@@ -27,9 +28,9 @@ class Input:
                 self.key_events[binding] = False
 
     def soft_reset(self):
-        # for binding in self.config:
-        #     if self.config[binding]['trigger'] == 'press':
-        #         self.key_events[binding] = False
+        for binding in self.config:
+            if self.config[binding]['trigger'] == 'press':
+                self.key_events[binding] = False
 
         self.mouse_state['left'] = False
         self.mouse_state['right'] = False
@@ -40,7 +41,6 @@ class Input:
         
     def update(self, event):
         self.mouse_pos = pygame.mouse.get_pos()
-        self.soft_reset()
         
         if event.type == pygame.KEYDOWN:
             for keybind in self.config:
