@@ -5,7 +5,7 @@ from pyrite.collision import *
 import time
 
 class Entity:
-    def __init__(self, pos, size, movement=None):
+    def __init__(self, pos, size):
         pygame.init()
         self.x, self.y = pos[0], pos[1]
         self.width, self.height = size[0], size[1]
@@ -16,18 +16,6 @@ class Entity:
         
         self.direction = 'right'
         
-        if movement:
-            self.speed = movement['speed']
-            self.jump_height = movement['jump_heigth'] 
-            self.gravity, self.friction = movement['gravity'], movement['friction']
-            self.position, self.velocity = pygame.math.Vector2(self.x, self.y), pygame.math.Vector2(0, 0)
-            self.acceleration = pygame.math.Vector2(0, self.gravity)
-            self.on_ground = False                      
-            self.is_falling = False
-            self.is_jumping = False
-            self.double_jump = True
-            self.last_jump = time.time()
-    
     def update_rect(self):
         self.rect.x, self.rect.y = self.x, self.y
     
@@ -51,31 +39,25 @@ class Entity:
             self.image = pygame.transform.scale(pygame.image.load(path), image_size)
             self.image.set_colorkey((0,0,0))
             self.rect = self.image.get_rect()
+        
     
-    def limit_velocity(self, max_vel):
-        """limits the velocity of the player"""
-        min(-max_vel, max(self.velocity.x, max_vel))
-        if abs(self.velocity.x) < .01: self.velocity.x = 0
         
-    def jump(self):
-        if self.on_ground:
-            print('jump')
-            self.last_jump = time.time()
-            self.double_jump = True
-            self.is_jumping = True
-            self.is_falling = False
-            self.velocity.y -= self.jump_height
-            self.rect.y = self.y
-            self.on_ground = False
-        elif self.double_jump and self.on_ground == False and time.time() - self.last_jump > 0.3:
-            self.double_jump = False
-            self.is_jumping = True
-            self.is_falling = False
-            self.velocity.y -= self.jump_height
-            self.on_ground = False
-        if self.velocity.y <= self.jump_height * 2 - 1:
-            self.velocity.y = self.jump_height
+class PhysicalEntity(Entity):
+    def __init__(self, pos, size, movement):
+        super().__init__(pos, size)
         
+        self.speed = movement['speed']
+        self.jump_height = movement['jump_heigth'] 
+        self.gravity, self.friction = movement['gravity'], movement['friction']
+        self.position, self.velocity = pygame.math.Vector2(self.x, self.y), pygame.math.Vector2(0, 0)
+        self.acceleration = pygame.math.Vector2(0, self.gravity)
+        
+        self.on_ground = False                      
+        self.is_falling = False
+        self.is_jumping = False
+        self.double_jump = True
+        self.last_jump = time.time()
+    
     def calc_movement(self, ent, keys, dt, tile_list):
         movement_x = 0
         movement_y = 0
@@ -119,5 +101,9 @@ class Entity:
         move(self, movement_x, movement_y, tile_list)
         self.update_rect()
     
-        
-        
+    def jump(self):
+        self.velocity.y -= self.jump_height
+    
+    def limit_velocity(self, max_vel):
+        min(-max_vel, max(self.velocity.x, max_vel))
+        if abs(self.velocity.x) < .01: self.velocity.x = 0

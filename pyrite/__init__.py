@@ -4,7 +4,7 @@ from .camera import Camera
 from .clock import Clock
 from .assets.config import Config
 from .inputs import Input
-from .player import Player
+from .entity.player import Player
 from .functions import *
 
 def init(game, config_path):
