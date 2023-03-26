@@ -13,7 +13,7 @@ class Animation:
         self.animation = animation
         self.aniamtion_frame = 0
 
-    def get_animation(self, img_path, rules_path, sprite_size):
+    def get_animation(self, img_path, rules_path, sprite_size, player_size):
         """loads the animation from spritesheet and saves infos given in json file with the frames"""
         image = pygame.image.load(img_path)
         sprite = Sprite(image, sprite_size, sprite_size, (0, 0, 0))
@@ -43,6 +43,7 @@ class Animation:
             temp_row = []
             for col in range(0, image_cols):
                 frame = sprite.cut(col, row)
+                frame = pygame.transform.scale(frame, player_size)
                 frame_mask = pygame.mask.from_surface(frame)
                 frame_pixels = frame_mask.count()
                 if frame_pixels != 0:

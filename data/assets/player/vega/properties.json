@@ -1,7 +1,9 @@
 {
     "name": "Vega",
-    "size": [32, 64],
+    "size": [16, 32],
     "health": 100,
+    "animated": true,
+    "assets_path": "data/assets/player/vega/",
     "movement": {
         "speed": 5, 
         "gravity": 0.9, 
@@ -11,6 +13,7 @@
     "animations": {
         "animation-rules": "animation.json",
         "main": "player_sprite.png",
+        "frame_resolution": [16, 32],
         "special": {
             "wide-run": {
                 "image": "player_wide.png", 
