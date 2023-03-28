@@ -4,14 +4,16 @@ from .sprite import Sprite
 
 class Animation:
     def __init__(self):
-        self.aniamtion_frame = 0
+        self.animation_frame = 0
         self.animation = 'idle'
         self.frames = {}
         self.current_direction = 'right'
         
     def set_animation(self, animation):
         self.animation = animation
-        self.aniamtion_frame = 0
+    
+    def return_animation(self):
+        return self.animation
 
     def get_animation(self, img_path, rules_path, sprite_size, player_size):
         """loads the animation from spritesheet and saves infos given in json file with the frames"""
@@ -93,13 +95,13 @@ class Animation:
             frame_steps[total_frames] = frame
         
         for frame in reversed(frame_steps):
-            if self.aniamtion_frame <= frame :
+            if self.animation_frame <= frame :
                 temp_frame = frame_steps[frame]['frame']
                 if self.player.direction != self.current_direction:
                     temp_frame = pygame.transform.flip(temp_frame, True, False)    
                 self.player.image = temp_frame
                 
                 
-        if self.aniamtion_frame > total_frames:
-                self.aniamtion_frame = 0
-        self.aniamtion_frame += 1
+        if self.animation_frame > total_frames:
+                self.animation_frame = 0
+        self.animation_frame += 1

@@ -39,8 +39,7 @@ class Entity:
             self.image = pygame.transform.scale(pygame.image.load(path), image_size['player_size'])
             self.image.set_colorkey((0,0,0))
             self.rect = self.image.get_rect()
-        
-    
+            
         
 class PhysicalEntity(Entity):
     def __init__(self, pos, size, movement):

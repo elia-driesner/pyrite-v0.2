@@ -1,6 +1,6 @@
 {
     "name": "Light McSpeed",
-    "size": [42, 42],
+    "size": [32, 32],
     "health": 100,
     "animated": true,
     "assets_path": "data/assets/player/LightMcSpeed/",
@@ -13,7 +13,7 @@
     "animations": {
         "animation-rules": "animation.json",
         "main": "sprite.png",
-        "frame_resolution": [32, 32],
+        "frame_resolution": [16, 16],
         "special": {
             
             }

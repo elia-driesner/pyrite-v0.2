@@ -4,19 +4,9 @@
         "frame_duration": 30,
         "custom_length": []
     },
-    "walk": {
-        "row": 1,
-        "frame_duration": 10,
-        "custom_length": []
-    },
     "run": {
-        "row": 2,
-        "frame_duration": 5,
+        "row": 1,
+        "frame_duration": 20,
         "custom_length": []
-    },
-    "jump": {
-        "row": 3,
-        "frame_duration": 10,
-        "custom_length": [[3, 999999999]]
     }
 }
