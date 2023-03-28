@@ -1,0 +1,17 @@
+{
+    "idle": {
+        "row": 0,
+        "frame_duration": 30,
+        "custom_length": []
+    },
+    "walk": {
+        "row": 1,
+        "frame_duration": 10,
+        "custom_length": []
+    },
+    "run": {
+        "row": 2,
+        "frame_duration": 5,
+        "custom_length": []
+    }
+}

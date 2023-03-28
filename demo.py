@@ -12,7 +12,7 @@ class Game:
         self.run = True
         pyrite.init(self, '')
         
-        self.player = pyrite.Player(self.world.map_output[2], pyrite.load_player_data('data/assets/player/vega/properties.json'))        
+        self.player = pyrite.Player(self.world.map_output[2], pyrite.load_player_data('data/assets/player/LightMcSpeed/properties.json'))        
                 
     def render(self):
         self.player.update(self.input.key_events, self.clock.dt, self.world.tile_list)
