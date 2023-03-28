@@ -27,7 +27,7 @@ class Player(PhysicalEntity):
         self.load_images(player_sprite, animation_rules_path, {'player_size': self.size, 'frame_size': frame_resolution}, animated)
         self.type = type
             
-        self.animation = 'idle'
+        self.animation = 'jump'
         self.animation_loader.set_animation(self.animation)
         self.animation_loader.update(self)
         self.rect = self.image.get_rect()
