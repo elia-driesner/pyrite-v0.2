@@ -32,7 +32,7 @@ class Player(PhysicalEntity):
         self.animation_loader.set_animation(self.animation)
         self.animation_loader.update(self)
         self.rect = self.image.get_rect()
-        cut_rect(self.image)
+        context_rect = cut_rect(self.image)
         
     def update(self, keys, dt, tile_list):
         self.calc_movement(self, keys, dt, tile_list)

@@ -16,7 +16,6 @@ def cut_rect(image):
         row_pixels = row_mask.count()
         if row_pixels != 0:
             height += 1
-        print(row_pixels)
     
     for col in range(0, size[0]):
         col_surf = pygame.Surface((1, size[1]))
@@ -26,6 +25,7 @@ def cut_rect(image):
         col_pixels = col_mask.count()
         if col_pixels != 0:
             width += 1
-        print(col_pixels)
+    
+    return pygame.Rect(0, 0, width, height)
         
         
