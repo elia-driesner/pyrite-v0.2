@@ -1,6 +1,6 @@
 {
     "name": "Light McSpeed",
-    "size": [32, 32],
+    "size": [42, 42],
     "health": 100,
     "animated": true,
     "assets_path": "data/assets/player/LightMcSpeed/",
