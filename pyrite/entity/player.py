@@ -23,7 +23,7 @@ class Player(PhysicalEntity):
         animated = self.player_data['animated']
         frame_resolution = self.player_data['animations']['frame_resolution']
          
-        super().__init__(pos, self.size, self.movement_data)
+        super().__init__(self.size, self.movement_data)
         
         self.load_images(player_sprite, animation_rules_path, {'player_size': self.size, 'frame_size': frame_resolution}, animated)
         self.type = type
@@ -31,8 +31,9 @@ class Player(PhysicalEntity):
         self.animation = 'run'
         self.animation_loader.set_animation(self.animation)
         self.animation_loader.update(self)
-        self.rect = self.image.get_rect()
-        context_rect = cut_rect(self.image)
+        self.rect = cut_rect(self.image)
+        self.rect_offset = (self.rect.x, self.rect.y)
+        self.rect.x, self.rect.y = pos[0], pos[1]
         
     def update(self, keys, dt, tile_list):
         self.calc_movement(self, keys, dt, tile_list)

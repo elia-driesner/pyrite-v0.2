@@ -5,13 +5,12 @@ from pyrite.collision import *
 import time
 
 class Entity:
-    def __init__(self, pos, size):
+    def __init__(self,size):
         pygame.init()
-        self.x, self.y = pos[0], pos[1]
         self.width, self.height = size[0], size[1]
         
         self.image = None
-        self.rect = None
+        self.rect = pygame.Rect(0, 0, 0, 0)
         self.mask = None
         
         self.direction = 'right'
@@ -24,7 +23,7 @@ class Entity:
         
     def draw(self, wn, scroll):
         """draws the entity on screen"""
-        wn.blit(self.image, (self.x - scroll[0], self.y - scroll[1]))
+        wn.blit(self.image, ((self.rect.x - self.rect_offset[0]) - scroll[0], (self.rect.y - self.rect_offset[1]) - scroll[1]))
         
     def load_animation(self, path, rules_path, frame_size, player_size):
         self.animation_loader = Animation()
@@ -42,13 +41,13 @@ class Entity:
             
         
 class PhysicalEntity(Entity):
-    def __init__(self, pos, size, movement):
-        super().__init__(pos, size)
+    def __init__(self, size, movement):
+        super().__init__(size)
         
         self.speed = movement['speed']
         self.jump_height = movement['jump_heigth'] 
         self.gravity, self.friction = movement['gravity'], movement['friction']
-        self.position, self.velocity = pygame.math.Vector2(self.x, self.y), pygame.math.Vector2(0, 0)
+        self.position, self.velocity = pygame.math.Vector2(self.rect.x, self.rect.y), pygame.math.Vector2(0, 0)
         self.acceleration = pygame.math.Vector2(0, self.gravity)
         
         self.on_ground = False                      
@@ -61,8 +60,8 @@ class PhysicalEntity(Entity):
         movement_x = 0
         movement_y = 0
         
-        self.position.x = self.x
-        self.position.y = self.y
+        self.position.x = self.rect.x
+        self.position.y = self.rect.y
         
         # x movement
         self.acceleration.x = 0
@@ -79,7 +78,7 @@ class PhysicalEntity(Entity):
         self.velocity.x += self.acceleration.x * dt
         self.limit_velocity(7)
         self.position.x += self.velocity.x * dt + (self.acceleration.x * .5) * (dt * dt)
-        movement_x = self.position.x - self.x
+        movement_x = self.position.x - self.rect.x
 
         # y movement
         if keys['jump']:
@@ -92,13 +91,12 @@ class PhysicalEntity(Entity):
             self.velocity.y = 0
         else:
             self.position.y += self.velocity.y * dt + (self.acceleration.y * .5) * (dt * dt)
-        if self.y - self.position.y < 0:
+        if self.rect.y - self.position.y < 0:
             self.is_falling = True
             self.is_jumping = False
-        movement_y = self.position.y - self.y
+        movement_y = self.position.y - self.rect.y
 
         move(self, movement_x, movement_y, tile_list)
-        self.update_rect()
     
     def jump(self):
         self.velocity.y -= self.jump_height
