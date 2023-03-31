@@ -41,9 +41,6 @@ class Player(PhysicalEntity):
         self.particle_managers.append(LandParticles())
         
     def update(self, keys, dt, tile_list):
-        if keys['jump']:
-            for i in range(0, 100):
-                self.particle_managers[0].add((self.rect.x + random.randint(0, self.rect.w), self.rect.y + self.rect.h))
         self.calc_movement(self, keys, dt, tile_list)
         self.animation_loader.update(self)
 

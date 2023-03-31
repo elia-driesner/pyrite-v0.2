@@ -8,9 +8,22 @@ class Animation:
         self.animation = 'idle'
         self.frames = {}
         self.current_direction = 'right'
+        self.last_animation = 'idle'
         
     def set_animation(self, animation):
         self.animation = animation
+    
+    def reset_aniamtion(self):
+        self.animation_frame = 0
+    
+    def set_direction(self, direction):
+        self.direction = direction
+    
+    def reverse_direction(self):
+        if self.direction == 'right':
+            self.direction = 'left'
+        else:
+            self.direction = 'right'
     
     def return_animation(self):
         return self.animation
@@ -105,3 +118,4 @@ class Animation:
         if self.animation_frame > total_frames:
                 self.animation_frame = 0
         self.animation_frame += 1
+        self.last_animation = self.animation

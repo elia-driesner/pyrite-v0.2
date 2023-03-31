@@ -2,7 +2,7 @@ import pygame
 from pyrite.assets.sprite import Sprite
 from pyrite.assets.animation_loader import Animation
 from pyrite.collision import * 
-import time
+import time, random
 
 class Entity:
     def __init__(self,size):
@@ -14,8 +14,10 @@ class Entity:
         self.mask = None
         
         self.direction = 'right'
+        self.on_ground = False
         
         self.particle_managers = []
+        self.last_movement = (0, 0)
         
     def update_rect(self):
         self.rect.x, self.rect.y = self.x, self.y
@@ -103,10 +105,26 @@ class PhysicalEntity(Entity):
             self.is_jumping = False
         movement_y = self.position.y - self.rect.y
 
+        self.on_ground = False
         move(self, movement_x, movement_y, tile_list)
-    
+        if self.on_ground and movement_x == 0:
+            self.animation_loader.set_animation('idle')
+        elif self.on_ground and movement_x != 0:
+            self.animation_loader.set_animation('run')
+        elif movement_y > 1:
+            self.animation_loader.set_animation('fall')
+        
+        if self.animation_loader.last_animation == 'fall':
+            if self.animation_loader.animation == 'idle' or self.animation_loader.animation == 'run':
+                self.animation_loader.set_animation('land')
+                for i in range(0, 50):
+                    self.particle_managers[0].add((self.rect.x + self.rect_offset[0] + random.randint(0, self.rect.w), self.rect.y + self.rect_offset[1] + self.rect.h))
+        
+        self.last_movement = (movement_x, movement_y)
+            
     def jump(self):
         self.velocity.y -= self.jump_height
+        self.animation_loader.set_animation('jump')
     
     def limit_velocity(self, max_vel):
         min(-max_vel, max(self.velocity.x, max_vel))

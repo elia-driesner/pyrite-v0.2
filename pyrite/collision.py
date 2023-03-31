@@ -9,7 +9,6 @@ def tile_collision(rect, tiles):
 
 def move(entity, x_movement, y_movement, tile_list):
     entity = entity
-    entity.on_ground = False
     
     entity.rect.x += x_movement
     collisions = tile_collision(entity.rect, tile_list)

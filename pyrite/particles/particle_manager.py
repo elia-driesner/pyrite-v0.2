@@ -35,7 +35,7 @@ class LandParticles(ParticleManager):
         super().__init__()
         self.spawn_delay = 0
         self.counter = self.spawn_delay
-        self.max_speed = 2
+        self.max_speed = 1.5
         self.radius = 3
         
     def add(self, pos):
@@ -45,9 +45,7 @@ class LandParticles(ParticleManager):
         self.counter -= 1
         
     def subtract_duration(self, particle):
-        particle.duration *= 10
-        particle.duration -= 1
-        particle.duration /= 10
+        particle.duration -= 0.2
         
     def render(self, window, scroll):
         window = window

@@ -5,3 +5,5 @@ light
 particles
 
 flip image in every frame
+
+check if player is falling jumping etc.
