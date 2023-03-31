@@ -117,7 +117,7 @@ class PhysicalEntity(Entity):
         if self.animation_loader.last_animation == 'fall':
             if self.animation_loader.animation == 'idle' or self.animation_loader.animation == 'run':
                 self.animation_loader.set_animation('land')
-                for i in range(0, 50):
+                for i in range(0, 70):
                     self.particle_managers[0].add((self.rect.x + self.rect_offset[0] + random.randint(0, self.rect.w), self.rect.y + self.rect_offset[1] + self.rect.h))
         
         self.last_movement = (movement_x, movement_y)
