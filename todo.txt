@@ -1,11 +1,7 @@
 chunks
 
-movement
-
 light
 
 particles
 
 flip image in every frame
-
-cut rect

@@ -73,12 +73,15 @@ class PhysicalEntity(Entity):
             ent.animation = 'run'
             self.direction = 'right'
             self.acceleration.x += self.speed
-            
         self.acceleration.x += self.velocity.x * self.friction
         self.velocity.x += self.acceleration.x * dt
         self.limit_velocity(7)
         self.position.x += self.velocity.x * dt + (self.acceleration.x * .5) * (dt * dt)
         movement_x = self.position.x - self.rect.x
+        if movement_x < 0:
+            if movement_x > -0.5: movement_x = 0
+        elif movement_x > 0:
+            if movement_x < 0.5: movement_x = 0
 
         # y movement
         if keys['jump']:
