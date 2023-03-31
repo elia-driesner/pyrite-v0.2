@@ -1,8 +1,11 @@
 import pygame
+import random
 
 from .entity import Entity, PhysicalEntity
 from ..assets.json_loader import JsonLoader
 from ..assets.rect_cutter import cut_rect
+from ..particles.particle_manager import LandParticles
+
 
 class Player(PhysicalEntity):
     def __init__(self, pos, player_data):
@@ -35,10 +38,14 @@ class Player(PhysicalEntity):
         self.rect_offset = (self.rect.x, self.rect.y)
         self.rect.x, self.rect.y = pos[0], pos[1]
         
+        self.particle_managers.append(LandParticles())
+        
     def update(self, keys, dt, tile_list):
+        if keys['jump']:
+            for i in range(0, 100):
+                self.particle_managers[0].add((self.rect.x + random.randint(0, self.rect.w), self.rect.y + self.rect.h))
         self.calc_movement(self, keys, dt, tile_list)
         self.animation_loader.update(self)
-    
 
 def load_player_data(path):
     json_loader = JsonLoader()

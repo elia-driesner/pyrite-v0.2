@@ -15,6 +15,8 @@ class Entity:
         
         self.direction = 'right'
         
+        self.particle_managers = []
+        
     def update_rect(self):
         self.rect.x, self.rect.y = self.x, self.y
     
@@ -24,6 +26,8 @@ class Entity:
     def draw(self, wn, scroll):
         """draws the entity on screen"""
         wn.blit(self.image, ((self.rect.x - self.rect_offset[0]) - scroll[0], (self.rect.y - self.rect_offset[1]) - scroll[1]))
+        for manager in self.particle_managers:
+            manager.render(wn, scroll)
         
     def load_animation(self, path, rules_path, frame_size, player_size):
         self.animation_loader = Animation()

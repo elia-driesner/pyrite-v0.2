@@ -3,7 +3,7 @@ import sys
 import time
 import os
 
-from pyrite.particles.particle_manager import LandParticle
+from pyrite.particles.particle_manager import LandParticles
 
 import pyrite
 
@@ -14,15 +14,12 @@ class Game:
         pyrite.init(self, '')
         
         self.player = pyrite.Player(self.world.map_output[2], pyrite.load_player_data('data/assets/player/LightMcSpeed/properties.json'))       
-        
-        self.test = LandParticle()
                 
     def render(self):
         self.window.display.blit(game.world.map_surf, (0 - self.camera.scroll[0], 0 - self.camera.scroll[1]))
         self.player.update(self.input.key_events, self.clock.dt, self.world.tile_list)
         self.camera.set_focus(self.player)
         self.player.draw(self.window.display, self.camera.scroll)
-        self.test.render(self.window.display)
         
         self.window.update()
     

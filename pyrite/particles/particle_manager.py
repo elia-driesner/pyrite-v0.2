@@ -10,30 +10,51 @@ class ParticleManager:
     def add_particle(self, particle):
         self.particles.append(particle)
     
-    def random_speed(self, right, down, left, up, speed):
-        random_x = random.randint((speed * left * 1000) * -1, speed * right * 1000) / 1000 -1
-        random_y = random.randint((speed * up * 1000) * -1, speed * down * 1000) / 1000 -1
+    def random_speed(self, speed, x=0, y=0):
+        random_x = random.randint((speed * 1000) * -1, speed * 1000) / 1000 -1
+        random_y = random.randint((speed * 1000) * -1, speed * 1000) / 1000 -1
+        
+        if x == -1:
+            if random_x > 0:
+                random_x *= -1
+        if x == 1:
+            if random_x < 0:
+                random_x *= -1
+        if y == -1:
+            if random_y > 0:
+                random_y *= -1
+        if y == 1:
+            if random_y < 0:
+                random_y *= -1
         
         return (random_x, random_y)
     
     
-class LandParticle(ParticleManager):
+class LandParticles(ParticleManager):
     def __init__(self):
         super().__init__()
         self.spawn_delay = 0
         self.counter = self.spawn_delay
+        self.max_speed = 2
+        self.radius = 3
         
     def add(self, pos):
         if self.counter <= 0:
-            self.add_particle(Particle(pos, self.random_speed(up=1, down=1, left=1, right=1, speed=2), 100))
+            self.add_particle(Particle(pos, self.random_speed(self.max_speed, y=-1), self.radius))
             self.counter = self.spawn_delay
         self.counter -= 1
         
-    def render(self, window):
+    def subtract_duration(self, particle):
+        particle.duration *= 10
+        particle.duration -= 1
+        particle.duration /= 10
+        
+    def render(self, window, scroll):
         window = window
-        self.add(pygame.mouse.get_pos())
         
         for particle in self.particles:
             particle.calc_pos()
-            particle.duration -= 1
-            pygame.draw.circle(window, (255, 255, 255), (particle.x, particle.y), 4)
+            if particle.duration <= 0:
+                self.particles.pop(self.particles.index(particle))
+            pygame.draw.circle(window, (255, 255, 255), (particle.x - scroll[0], particle.y - scroll[1]), particle.duration)
+            self.subtract_duration(particle)
