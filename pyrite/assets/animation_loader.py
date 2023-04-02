@@ -30,6 +30,7 @@ class Animation:
 
     def get_animation(self, img, rules_path, sprite_size, player_size):
         """loads the animation from spritesheet and saves infos given in json file with the frames"""
+        self.animation_frame = 0
         image = img
         sprite = Sprite(image, sprite_size, sprite_size, (0, 0, 0))
         

@@ -24,13 +24,13 @@ class Player(PhysicalEntity):
         self.assets_path = self.player_data['assets_path']
         player_sprite = self.assets_path + self.player_data['animations']['main']
         main_sprite = self.player_data['animations']['main_sprite']
-        animation_rules_path = self.assets_path + self.player_data['animations']['animation-rules']
-        animated = self.player_data['animated']
-        frame_resolution = self.player_data['animations']['frame_resolution']
+        self.animation_rules_path = self.assets_path + self.player_data['animations']['animation-rules']
+        self.animated = self.player_data['animated']
+        self.frame_resolution = self.player_data['animations']['frame_resolution']
          
         super().__init__(self.size, self.movement_data)
         
-        self.load_images(main_sprite, animation_rules_path, {'player_size': self.size, 'frame_size': frame_resolution}, animated)
+        self.load_images(main_sprite, self.animation_rules_path, {'player_size': self.size, 'frame_size': self.frame_resolution}, self.animated)
         self.type = type
         self.skin = 'Standard'
             
@@ -43,21 +43,43 @@ class Player(PhysicalEntity):
         
         self.particle_managers.append(LandParticles())
         
-        self.change_skin('Standard')
+        self.change_skin('Business')
         
     def update(self, keys, dt, tile_list):
         self.calc_movement(self, keys, dt, tile_list)
         self.animation_loader.update(self)
     
+    def swap_skin(self, new_sprite):
+        self.load_images(new_sprite, self.animation_rules_path, {'player_size': self.size, 'frame_size': self.frame_resolution}, self.animated)
+    
     def change_skin(self, skin):
         skins = []
         for skin_name in self.player_data['skins']:
             skins.append(skin_name)
-        old_skin = self.skin
+        # old_skin = self.skin
+        old_skin = 'Standard'
         new_skin = skin
-        print(skins)
         
         changing_colors = []
+        changing_parts = {}
+        for part in self.player_data['colors']:
+            for s in self.player_data['colors'][part]:
+                if s == old_skin:
+                    old_color = self.player_data['colors'][part][s]
+            for s in self.player_data['colors'][part]:
+                if s == new_skin:
+                    new_color = self.player_data['colors'][part][s]
+            for i in old_color:
+                changing_colors.append({'part': part, 'colors':[i, new_color[old_color.index(i)]]})
+        
+        for i in changing_colors:
+            if not i['part'] in changing_parts:
+                part_name = i['part']
+                changing_parts[part_name] = []
+                changing_parts[part_name].append(i['colors'])
+            else:
+                changing_parts[part_name].append(i['colors'])
+        print(changing_parts)
         
 
 def load_player_data(path):
