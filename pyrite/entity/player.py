@@ -23,17 +23,18 @@ class Player(PhysicalEntity):
         self.movement_data = self.player_data['movement']
         self.assets_path = self.player_data['assets_path']
         player_sprite = self.assets_path + self.player_data['animations']['main']
-        main_sprite = self.player_data['animations']['main_sprite']
+        self.main_sprite = self.player_data['animations']['main_sprite']
         self.animation_rules_path = self.assets_path + self.player_data['animations']['animation-rules']
         self.animated = self.player_data['animated']
         self.frame_resolution = self.player_data['animations']['frame_resolution']
          
         super().__init__(self.size, self.movement_data)
         
-        self.load_images(main_sprite, self.animation_rules_path, {'player_size': self.size, 'frame_size': self.frame_resolution}, self.animated)
+        self.load_images(self.main_sprite, self.animation_rules_path, {'player_size': self.size, 'frame_size': self.frame_resolution}, self.animated)
         self.type = type
         self.skin = 'Standard'
             
+        self.paletteSwap = PaletteSwap()
         self.animation = 'run'
         self.animation_loader.set_animation(self.animation)
         self.animation_loader.update(self)
@@ -48,9 +49,13 @@ class Player(PhysicalEntity):
     def update(self, keys, dt, tile_list):
         self.calc_movement(self, keys, dt, tile_list)
         self.animation_loader.update(self)
+        self.swap_skin()
     
-    def swap_skin(self, new_sprite):
-        self.load_images(new_sprite, self.animation_rules_path, {'player_size': self.size, 'frame_size': self.frame_resolution}, self.animated)
+    def swap_skin(self):
+        for color in self.skin_parts['Anzug']:
+            self.image = self.paletteSwap.swap(self.image, color)
+        for color in self.skin_parts['Hut']:
+            self.image = self.paletteSwap.swap(self.image, color)
     
     def change_skin(self, skin):
         skins = []
@@ -79,14 +84,13 @@ class Player(PhysicalEntity):
                 changing_parts[part_name].append(i['colors'])
             else:
                 changing_parts[part_name].append(i['colors'])
-        print(changing_parts)
+        self.skin_parts = changing_parts
         
 
 def load_player_data(path):
     json_loader = JsonLoader()
     properties = json_loader.read_path(path)        
     
-    paletteSwap = PaletteSwap()
     sprite_path = properties['assets_path'] + properties['animations']['main']
     sprite = pygame.image.load(sprite_path)
     properties['animations']['main_sprite'] = sprite

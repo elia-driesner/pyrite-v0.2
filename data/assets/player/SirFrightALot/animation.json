@@ -1,0 +1,22 @@
+{
+    "idle": {
+        "row": 0,
+        "frame_duration": 70,
+        "custom_length": []
+    },
+    "run": {
+        "row": 1,
+        "frame_duration": 15,
+        "custom_length": []
+    },
+    "fall": {
+        "row": 2,
+        "frame_duration": 15,
+        "custom_length": []
+    },
+    "land": {
+        "row": 3,
+        "frame_duration": 15,
+        "custom_length": []
+    }
+}

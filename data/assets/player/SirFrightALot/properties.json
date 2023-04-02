@@ -1,0 +1,26 @@
+{
+    "name": "Light McSpeed",
+    "size": [42, 42],
+    "health": 100,
+    "animated": true,
+    "assets_path": "data/assets/player/SirFrightALot/",
+    "movement": {
+        "speed": 9, 
+        "gravity": 0.9, 
+        "friction": -1, 
+        "jump_heigth": 17
+    },
+    "animations": {
+        "animation-rules": "animation.json",
+        "main": "sprite.png",
+        "frame_resolution": [16, 16],
+        "special": {
+            
+            }
+    },
+    "skins": {
+        "Standard": {}
+    },
+    "colors": {
+    }
+}
