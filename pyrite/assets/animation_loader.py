@@ -28,9 +28,9 @@ class Animation:
     def return_animation(self):
         return self.animation
 
-    def get_animation(self, img_path, rules_path, sprite_size, player_size):
+    def get_animation(self, img, rules_path, sprite_size, player_size):
         """loads the animation from spritesheet and saves infos given in json file with the frames"""
-        image = pygame.image.load(img_path)
+        image = img
         sprite = Sprite(image, sprite_size, sprite_size, (0, 0, 0))
         
         json_loader = JsonLoader()

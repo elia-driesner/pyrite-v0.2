@@ -5,6 +5,7 @@ from .entity import Entity, PhysicalEntity
 from ..assets.json_loader import JsonLoader
 from ..assets.rect_cutter import cut_rect
 from ..particles.particle_manager import LandParticles
+from ..assets.palette_swap import PaletteSwap
 
 
 class Player(PhysicalEntity):
@@ -22,14 +23,16 @@ class Player(PhysicalEntity):
         self.movement_data = self.player_data['movement']
         self.assets_path = self.player_data['assets_path']
         player_sprite = self.assets_path + self.player_data['animations']['main']
+        main_sprite = self.player_data['animations']['main_sprite']
         animation_rules_path = self.assets_path + self.player_data['animations']['animation-rules']
         animated = self.player_data['animated']
         frame_resolution = self.player_data['animations']['frame_resolution']
          
         super().__init__(self.size, self.movement_data)
         
-        self.load_images(player_sprite, animation_rules_path, {'player_size': self.size, 'frame_size': frame_resolution}, animated)
+        self.load_images(main_sprite, animation_rules_path, {'player_size': self.size, 'frame_size': frame_resolution}, animated)
         self.type = type
+        self.skin = 'Standard'
             
         self.animation = 'run'
         self.animation_loader.set_animation(self.animation)
@@ -40,11 +43,30 @@ class Player(PhysicalEntity):
         
         self.particle_managers.append(LandParticles())
         
+        self.change_skin('Standard')
+        
     def update(self, keys, dt, tile_list):
         self.calc_movement(self, keys, dt, tile_list)
         self.animation_loader.update(self)
+    
+    def change_skin(self, skin):
+        skins = []
+        for skin_name in self.player_data['skins']:
+            skins.append(skin_name)
+        old_skin = self.skin
+        new_skin = skin
+        print(skins)
+        
+        changing_colors = []
+        
 
 def load_player_data(path):
     json_loader = JsonLoader()
     properties = json_loader.read_path(path)        
+    
+    paletteSwap = PaletteSwap()
+    sprite_path = properties['assets_path'] + properties['animations']['main']
+    sprite = pygame.image.load(sprite_path)
+    properties['animations']['main_sprite'] = sprite
+    
     return properties
