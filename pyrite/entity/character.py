@@ -33,6 +33,12 @@ class Donald(Player):
 class Carter(Player):
     def __init__(self, player_data, pos):
         super().__init__(pos, player_data)
-    
+        
+    def glide(self):
+        if self.animation_loader.animation == 'fall' and self.keys['glide']:
+            if self.velocity.y > 5:
+                self.velocity.y -= (self.velocity.y - 5) / 2
+            
     def character_update(self):
-        pass
+        self.glide()
+            

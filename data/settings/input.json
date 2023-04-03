@@ -14,6 +14,11 @@
       "binding": ["keyboard", [32]],
       "mode": ["core"]
     },
+    "glide": {
+      "trigger": "hold",
+      "binding": ["keyboard", [32]],
+      "mode": ["core"]
+    },
     "ability_1": {
         "trigger": "press",
         "binding": ["keyboard", [15]],
