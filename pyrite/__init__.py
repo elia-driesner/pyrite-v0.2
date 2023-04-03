@@ -4,7 +4,8 @@ from .camera import Camera
 from .clock import Clock
 from .assets.config import Config
 from .inputs import Input
-from .entity.player import Player, load_player_data
+from .entity.player import *
+from .entity.character import *
 from .functions import *
 
 def init(game, config_path):

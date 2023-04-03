@@ -3,8 +3,6 @@ import sys
 import time
 import os
 
-from pyrite.particles.particle_manager import LandParticles
-
 import pyrite
 
 class Game:
@@ -13,7 +11,7 @@ class Game:
         self.run = True
         pyrite.init(self, '')
         
-        self.player = pyrite.Player(self.world.map_output[2], pyrite.load_player_data('data/assets/player/Carter/properties.json'))       
+        self.player = pyrite.assign_character ('Carter', self.world.map_output[2])
                 
     def render(self):
         self.window.display.blit(game.world.map_surf, (0 - self.camera.scroll[0], 0 - self.camera.scroll[1]))
