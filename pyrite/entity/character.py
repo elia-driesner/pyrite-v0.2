@@ -19,11 +19,20 @@ def assign_character(name, pos):
 class LightMcSpeed(Player):
     def __init__(self, player_data, pos):
         super().__init__(pos, player_data)
+    
+    def character_update(self):
+        pass
         
 class Donald(Player):
     def __init__(self, player_data, pos):
         super().__init__(pos, player_data)
+    
+    def character_update(self):
+        pass
         
 class Carter(Player):
     def __init__(self, player_data, pos):
         super().__init__(pos, player_data)
+    
+    def character_update(self):
+        pass
