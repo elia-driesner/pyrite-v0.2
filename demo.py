@@ -13,7 +13,7 @@ class Game:
         self.run = True
         pyrite.init(self, '')
         
-        self.player = pyrite.Player(self.world.map_output[2], pyrite.load_player_data('data/assets/player/LightMcSpeed/properties.json'))       
+        self.player = pyrite.Player(self.world.map_output[2], pyrite.load_player_data('data/assets/player/Carter/properties.json'))       
                 
     def render(self):
         self.window.display.blit(game.world.map_surf, (0 - self.camera.scroll[0], 0 - self.camera.scroll[1]))

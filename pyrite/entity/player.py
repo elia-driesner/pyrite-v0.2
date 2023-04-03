@@ -44,12 +44,12 @@ class Player(PhysicalEntity):
         
         self.particle_managers.append(LandParticles())
         
-        self.change_skin('Business')
+        # self.change_skin('Business')
         
     def update(self, keys, dt, tile_list):
         self.calc_movement(self, keys, dt, tile_list)
         self.animation_loader.update(self)
-        self.swap_skin()
+        # self.swap_skin()
     
     def swap_skin(self):
         for color in self.skin_parts['Anzug']:

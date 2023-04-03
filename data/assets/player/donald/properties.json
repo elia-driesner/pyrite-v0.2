@@ -19,21 +19,17 @@
             }
     },
     "skins": {
-        "Standard": {},
-        "Business": {}
+        "Standard": {}
     },
     "colors": {
-        "Hut": {
-            "Standard": [[210, 0, 207]],
-            "Business": [[194, 20, 20]]
+        "Haare": {
+            "Standard": [[210, 0, 207]]
         },
-        "Anzug": {
-            "Standard": [[250, 255, 111], [204, 195, 67]],
-            "Business": [[70, 70, 70], [36, 36, 36]]
+        "Herz": {
+            "Standard": [[250, 255, 111], [204, 195, 67]]
         },
-        "Krawatte": {
-            "Standard": [[210, 1, 207], [40, 8, 48]],
-            "Business": [[194, 20, 20], [194, 20, 20]]
+        "Körper": {
+            "Standard": [[255, 208, 0], [254, 251, 31]]
         }
     }
 }
