@@ -9,6 +9,16 @@
       "binding": ["keyboard", [97]],
       "mode": ["core"]
     },
+    "move_up": {
+      "trigger": "hold",
+      "binding": ["keyboard", [119]],
+      "mode": ["core"]
+    },
+    "move_down": {
+      "trigger": "hold",
+      "binding": ["keyboard", [115]],
+      "mode": ["core"]
+    },
     "jump": {
       "trigger": "press",
       "binding": ["keyboard", [32]],
@@ -21,7 +31,7 @@
     },
     "ability_1": {
         "trigger": "press",
-        "binding": ["keyboard", [15]],
+        "binding": ["keyboard", [101]],
         "mode": ["core"]
     }
 }

@@ -11,7 +11,8 @@ class Game:
         self.run = True
         pyrite.init(self, '')
         
-        self.player = pyrite.assign_character ('Carter', self.world.map_output[2])
+        self.player = pyrite.assign_character ('Carter', 
+                                               self.world.map_output[2])
                 
     def render(self):
         self.window.display.blit(game.world.map_surf, (0 - self.camera.scroll[0], 0 - self.camera.scroll[1]))

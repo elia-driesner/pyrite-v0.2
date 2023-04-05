@@ -23,5 +23,10 @@
         "row": 4,
         "frame_duration": 20,
         "custom_length": []
+    },
+    "fly": {
+        "row": 5,
+        "frame_duration": 20,
+        "custom_length": []
     }
 }
