@@ -58,18 +58,30 @@ class Carter(Player):
             self.animation_loader.set_animation('fly')
             self.acceleration.x = 0
             self.acceleration.y = 0
+            custom_speed = self.speed + (self.speed / 3)
             if self.keys['move_left']:
                 self.direction = 'left'
-                self.acceleration.x -= self.speed
+                self.acceleration.x -= custom_speed
             elif self.keys['move_right']:
                 self.direction = 'right'
-                self.acceleration.x += self.speed
+                self.acceleration.x += custom_speed
             if self.keys['move_up']:
                 self.direction = 'up'
-                self.acceleration.y -= self.speed
+                self.acceleration.y -= custom_speed
             elif self.keys['move_down']:
                 self.direction = 'down'
-                self.acceleration.y += self.speed
+                self.acceleration.y += custom_speed
+            
+            if self.acceleration.x != 0 and self.acceleration.y != 0:
+                dir_x = 1
+                dir_y = 1
+                if self.acceleration.x < 0:
+                    dir_x = -1
+                if self.acceleration.y < 0:
+                    dir_y = -1
+                
+                self.acceleration.x = custom_speed * 0.8 * dir_x
+                self.acceleration.y = custom_speed * 0.8 * dir_y
 
             
     def character_update(self):
