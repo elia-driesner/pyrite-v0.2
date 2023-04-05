@@ -41,7 +41,15 @@ class Carter(Player):
                 self.velocity.y -= (self.velocity.y - 5) / 2
             
     def fly(self):
-        if self.keys['ability_1']:
+        if self.keys['ability_1'] and self.is_flying:
+            self.is_flying = False
+            self.custom_movement = False
+            self.custom_animation = False
+            self.velocity.y = 0
+            self.acceleration.x = 0
+            self.acceleration = pygame.math.Vector2(0, self.gravity)
+            self.animation_loader.set_animation('fall')
+        elif self.keys['ability_1']:
             self.is_flying = True
             
         if self.is_flying:
@@ -62,6 +70,7 @@ class Carter(Player):
             elif self.keys['move_down']:
                 self.direction = 'down'
                 self.acceleration.y += self.speed
+
             
     def character_update(self):
         self.glide()
