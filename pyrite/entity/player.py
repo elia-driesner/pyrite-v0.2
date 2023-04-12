@@ -35,7 +35,7 @@ class Player(PhysicalEntity):
         self.skin = 'Standard'
             
         self.paletteSwap = PaletteSwap()
-        self.animation = 'run'
+        self.animation = 'idle'
         self.animation_loader.set_animation(self.animation)
         self.animation_loader.update(self)
         self.rect = cut_rect(self.image)

@@ -28,5 +28,10 @@
         "row": 5,
         "frame_duration": 20,
         "custom_length": []
+    },
+    "bite": {
+        "row": 6,
+        "frame_duration": 20,
+        "custom_length": []
     }
 }
