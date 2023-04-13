@@ -96,5 +96,4 @@ class Carter(Player):
     def character_update(self):
         self.glide()
         self.fly()
-        print(self.rect.w)
             

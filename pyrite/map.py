@@ -1,8 +1,9 @@
 import pygame, os, math
 from csv import reader
 from .assets.sprite import Sprite
+from .assets.json_loader import JsonLoader
 
-class Map():
+class CsvMap():
     def __init__(self, tile_size, wn_size, map_path, sprite_path):
         self.tarrain = str(map_path)
         self.tile_size = tile_size
@@ -30,6 +31,10 @@ class Map():
             for j in range(0, self.sprite_col):
                 self.images.append(self.sprite.cut(j, i))
     
+    def load(self):
+        self.load_csv_data()
+        self.load_images()
+    
     def draw_map(self, scroll):
         """draws the map once on a reusable surface"""
         self.tile_list = []
@@ -56,3 +61,25 @@ class Map():
                         enemy_spawn = (x, y - 30)
         
         return [self.surface, self.tile_list, player_spawn, enemy_spawn]
+
+
+class LDTKMap:
+    def __init__(self, folder_path, wn_size):
+        self.folder_path = folder_path
+        self.wn_size = wn_size
+        
+        self.json_loader = JsonLoader()
+        self.map_info = self.json_loader.read_path(folder_path + '/map_info.json')
+        self.map = self.json_loader.read_path(folder_path + '/' + self.map_info['map_path'])
+        
+    def load_map(self):
+        tileset_path = self.map['defs']['tilesets'][0]['relPath']
+        self.tileset = pygame.image.load(self.folder_path + '/' + tileset_path)
+        self.tile_size = self.map['defs']['tilesets'][0]['tileGridSize']
+        self.tile_data = self.map['levels'][0]['layerInstances'][0]['gridTiles']
+        
+    def load(self):
+        self.load_map()
+        
+        
+        

@@ -1,14 +1,13 @@
 import pygame
-from .map import Map
+from .map import CsvMap, LDTKMap
 from .background import Background
 
 class World:
     def __init__(self, game, config):
         self.game = game
         self.config = config
-        self.map = Map(config['tile-size'], self.game.settings['window']['wn-size'], config['map-path'], config['tileset-path'])
-        self.map.load_csv_data()
-        self.map.load_images()
+        self.map = LDTKMap('data/map/vulcanic', self.game.settings['window']['wn-size'])
+        self.map.load()
         
         self.bg = Background(self.game, self.config)
 
