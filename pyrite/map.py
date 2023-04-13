@@ -2,6 +2,7 @@ import pygame, os, math
 from csv import reader
 from .assets.sprite import Sprite
 from .assets.json_loader import JsonLoader
+from .assets.rect_cutter import cut_rect
 
 class CsvMap():
     def __init__(self, tile_size, wn_size, map_path, sprite_path):
@@ -71,13 +72,36 @@ class LDTKMap:
         self.json_loader = JsonLoader()
         self.map_info = self.json_loader.read_path(folder_path + '/map_info.json')
         self.map = self.json_loader.read_path(folder_path + '/' + self.map_info['map_path'])
+        self.collision_objects = []
         
     def load_map(self):
         tileset_path = self.map['defs']['tilesets'][0]['relPath']
         self.tileset = pygame.image.load(self.folder_path + '/' + tileset_path)
         self.tile_size = self.map['defs']['tilesets'][0]['tileGridSize']
+        self.sprite = Sprite(self.tileset, (16, 16), (self.tile_size, self.tile_size))
         self.tile_data = self.map['levels'][0]['layerInstances'][0]['gridTiles']
+        self.map_w = self.map['levels'][0]['pxWid']
+        self.map_h = self.map['levels'][0]['pxHei']
+        self.map_size = (self.map_w, self.map_h)
         
+    def draw_map(self, scroll):
+        self.surface = pygame.Surface(self.map_size)
+        self.surface.set_colorkey((0,0,0))
+        
+        for gridTile in self.tile_data:
+            x, y = gridTile['px'][0], gridTile['px'][1]
+            t_x, t_y = gridTile['src'][0], gridTile['src'][1]
+            frame, layer = t_x / self.tile_size, t_y / self.tile_size
+            image = self.sprite.cut(frame, layer)
+            self.surface.blit(image, (x - scroll[0], y - scroll[1]))
+            rect = cut_rect(image)
+            rect.x, rect.y = x, y
+            self.collision_objects.append([image, rect])
+        print(self.collision_objects)
+        
+        return [self.surface, self.collision_objects, [100, 100], [100, 100]]
+        
+                
     def load(self):
         self.load_map()
         
