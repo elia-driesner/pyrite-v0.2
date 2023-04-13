@@ -1,7 +1,0 @@
-{
-    "tileset": "tileset.png",
-    "map": "map.csv",
-    "custom_code": true,
-    "code_path": "vulcanic",
-    "spawn_tiles": [[112, 113], [114, 115]]
-}

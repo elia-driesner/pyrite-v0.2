@@ -1,0 +1,8 @@
+{
+    "layer": {
+        "static": "map.csv",
+        "lava_island": "interactive.csv",
+        "lava": "lava.csv"
+    }
+    "spawn_tiles": [[112, 113], [114, 115]]
+}
