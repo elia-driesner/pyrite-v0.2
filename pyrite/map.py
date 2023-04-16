@@ -75,11 +75,6 @@ class LDTKMap:
         self.collision_objects = []
         
     def load_map(self):
-        tileset_path = self.map['defs']['tilesets'][0]['relPath']
-        self.tileset = pygame.image.load(self.folder_path + '/' + tileset_path)
-        self.tile_size = self.map['defs']['tilesets'][0]['tileGridSize']
-        self.sprite = Sprite(self.tileset, (16, 16), (self.tile_size, self.tile_size))
-        self.tile_data = self.map['levels'][0]['layerInstances'][0]['gridTiles']
         self.map_w = self.map['levels'][0]['pxWid']
         self.map_h = self.map['levels'][0]['pxHei']
         self.map_size = (self.map_w, self.map_h)
@@ -88,16 +83,22 @@ class LDTKMap:
         self.surface = pygame.Surface(self.map_size)
         self.surface.set_colorkey((0,0,0))
         
-        for gridTile in self.tile_data:
-            x, y = gridTile['px'][0], gridTile['px'][1]
-            t_x, t_y = gridTile['src'][0], gridTile['src'][1]
-            frame, layer = t_x / self.tile_size, t_y / self.tile_size
-            image = self.sprite.cut(frame, layer)
-            self.surface.blit(image, (x - scroll[0], y - scroll[1]))
-            rect = cut_rect(image)
-            rect.x, rect.y = x, y
-            self.collision_objects.append([image, rect])
-        print(self.collision_objects)
+        self.layers = self.map['levels'][0]['layerInstances']
+        for layer in self.layers:
+            tileset_path = layer['__tilesetRelPath']
+            tileset = pygame.image.load(self.folder_path + '/' + tileset_path)
+            tile_size = layer['__gridSize']
+            sprite = Sprite(tileset, (tile_size, tile_size), (tile_size, tile_size))
+            grid_tiles = layer['gridTiles']
+            for gridTile in grid_tiles:
+                x, y = gridTile['px'][0], gridTile['px'][1]
+                t_x, t_y = gridTile['src'][0], gridTile['src'][1]
+                frame, layer = t_x / tile_size, t_y / tile_size
+                image = sprite.cut(frame, layer)
+                self.surface.blit(image, (x - scroll[0], y - scroll[1]))
+                rect = cut_rect(image)
+                rect.x, rect.y = x + rect.x, y + rect.y
+                self.collision_objects.append([image, rect])
         
         return [self.surface, self.collision_objects, [100, 100], [100, 100]]
         
