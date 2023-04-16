@@ -15,7 +15,8 @@ class World:
         self.tile_list = self.map_output[1]
         self.map_surf = self.map_output[0]
         
-    def update(self):
+    def update(self, scroll):
+        self.map_surf = self.map.update(scroll)
         self.bg.update()
     
         

@@ -1,0 +1,10 @@
+{
+    "animations": {
+        "lava": {
+        "moving": {
+            "row": 0,
+            "frame_duration": 128,
+            "custom_length": []
+        }}
+        }
+}

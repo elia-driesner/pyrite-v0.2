@@ -28,14 +28,17 @@ class Animation:
     def return_animation(self):
         return self.animation
 
-    def get_animation(self, img, rules_path, sprite_size, player_size):
+    def get_animation(self, img, rules_path, sprite_size, scale_size):
         """loads the animation from spritesheet and saves infos given in json file with the frames"""
         self.animation_frame = 0
         image = img
         sprite = Sprite(image, sprite_size, sprite_size, (0, 0, 0))
         
-        json_loader = JsonLoader()
-        rules = json_loader.read_path(rules_path)
+        if isinstance(rules_path, str):
+            json_loader = JsonLoader()
+            rules = json_loader.read_path(rules_path)
+        else:
+            rules = rules_path
         animation_rules = {}
         
         for animation in rules:
@@ -59,7 +62,7 @@ class Animation:
             temp_row = []
             for col in range(0, image_cols):
                 frame = sprite.cut(col, row)
-                frame = pygame.transform.scale(frame, player_size)
+                frame = pygame.transform.scale(frame, scale_size)
                 frame_mask = pygame.mask.from_surface(frame)
                 frame_pixels = frame_mask.count()
                 if frame_pixels != 0:
@@ -96,9 +99,7 @@ class Animation:
             frame += 1
         self.frames[animation_name] = row
     
-    def update(self, player):
-        self.player = player
-        
+    def update(self, ent, direction='right'):
         total_frames = 0
         frame_steps = {}
         
@@ -111,9 +112,9 @@ class Animation:
         for frame in reversed(frame_steps):
             if self.animation_frame <= frame :
                 temp_frame = frame_steps[frame]['frame']
-                if self.player.direction != self.current_direction:
+                if direction != self.current_direction:
                     temp_frame = pygame.transform.flip(temp_frame, True, False)    
-                self.player.image = temp_frame
+                ent.image = temp_frame
                 
                 
         if self.animation_frame > total_frames:

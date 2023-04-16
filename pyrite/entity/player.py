@@ -50,7 +50,7 @@ class Player(PhysicalEntity):
         self.keys = keys
         self.character_update()
         self.calc_movement(self, keys, dt, tile_list)
-        self.animation_loader.update(self)
+        self.animation_loader.update(self, self.direction)
         # self.swap_skin()
     
     def swap_skin(self):
