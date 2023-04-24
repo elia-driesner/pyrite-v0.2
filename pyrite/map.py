@@ -110,7 +110,7 @@ class LDTKMap:
         for animated_type in self.animated_tiles:
             for tile in self.animated_tiles[animated_type]:
                 tile.update()
-                temp_surf.blit(tile.image, (tile.rect.x - scroll[0], tile.rect.y - scroll[0]))
+                temp_surf.blit(tile.image, (tile.rect.x, tile.rect.y))
         self.map_surf = temp_surf
         return self.map_surf
         

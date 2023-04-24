@@ -6,6 +6,7 @@ class Window:
         self.game = game
 
         self.wn_size = config['wn-size']
+        self.wn_scale = config['wn-scale']
         self.fullscreen = config['fullscreen']
         self.bg_color = config['bg-color']
         self.show_fps = config['show-fps']
@@ -15,9 +16,9 @@ class Window:
         
         self.display = pygame.Surface(self.wn_size)
         if self.fullscreen:
-            self.window = pygame.display.set_mode(self.wn_size, pygame.FULLSCREEN)
+            self.window = pygame.display.set_mode(self.wn_scale, pygame.FULLSCREEN)
         else:
-            self.window = pygame.display.set_mode(self.wn_size)
+            self.window = pygame.display.set_mode(self.wn_scale)
         pygame.display.set_caption(config['title'])
     
     def reset(self):
@@ -26,5 +27,5 @@ class Window:
     def update(self):
         if self.show_fps:
             self.display.blit(self.font.write(f'FPS: {self.game.clock.fps}', 1), (5, 5))
-        self.window.blit(self.display, self.render_offset)
+        self.window.blit(pygame.transform.scale(self.display, self.wn_scale), self.render_offset)
         pygame.display.update()

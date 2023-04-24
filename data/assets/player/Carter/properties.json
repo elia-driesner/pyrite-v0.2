@@ -1,6 +1,6 @@
 {
     "name": "Carter",
-    "size": [42, 42],
+    "size": [26, 26],
     "health": 100,
     "animated": true,
     "assets_path": "data/assets/player/Carter/",

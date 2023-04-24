@@ -3,7 +3,7 @@
         "lava": {
         "moving": {
             "row": 0,
-            "frame_duration": 128,
+            "frame_duration": 32,
             "custom_length": []
         }}
         }

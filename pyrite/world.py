@@ -17,6 +17,7 @@ class World:
         
     def update(self, scroll):
         self.map_surf = self.map.update(scroll)
+        # self.map_surf = pygame.transform.scale(self.map_surf, self.game.window.wn_size)
         self.bg.update()
     
         
