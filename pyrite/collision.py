@@ -22,7 +22,7 @@ def move(entity, x_movement, y_movement, tile_list):
             entity.velocity.x = 0
     
     entity.rect.y += y_movement
-    collisions = tile_collision(entity.rect, tile_list)
+    collisions = tile_collision(entity.rect, tile_list['collision_tile_list'])
     for tile in collisions:
         if y_movement > 0: # falling, hit from top
             entity.rect.bottom = tile[1].top
