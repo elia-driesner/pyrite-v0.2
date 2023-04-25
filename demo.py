@@ -15,7 +15,7 @@ class Game:
                 
     def render(self):
         self.window.display.blit(game.world.map_surf, (0 - self.camera.scroll[0], 0 - self.camera.scroll[1]))
-        self.player.update(self.input.key_events, self.clock.dt, self.world.tile_list)
+        self.player.update(self.input.key_events, self.clock.dt, self.world.tiles)
         self.camera.set_focus(self.player)
         self.player.draw(self.window.display, self.camera.scroll)
         

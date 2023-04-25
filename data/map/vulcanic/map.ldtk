@@ -40,7 +40,7 @@
 	"defs": { "layers": [
 		{
 			"__type": "Tiles",
-			"identifier": "DeepLava_static",
+			"identifier": "DeepLava_static_collision",
 			"type": "Tiles",
 			"uid": 7,
 			"doc": null,
@@ -68,7 +68,7 @@
 		},
 		{
 			"__type": "Tiles",
-			"identifier": "Lava_animated",
+			"identifier": "Lava_animated_collision",
 			"type": "Tiles",
 			"uid": 6,
 			"doc": null,
@@ -96,7 +96,7 @@
 		},
 		{
 			"__type": "Tiles",
-			"identifier": "Groundtiles_static",
+			"identifier": "Groundtiles_static_collision",
 			"type": "Tiles",
 			"uid": 1,
 			"doc": null,
@@ -210,7 +210,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "DeepLava_static",
+					"__identifier": "DeepLava_static_collision",
 					"__type": "Tiles",
 					"__cWid": 60,
 					"__cHei": 39,
@@ -597,7 +597,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Lava_animated",
+					"__identifier": "Lava_animated_collision",
 					"__type": "Tiles",
 					"__cWid": 60,
 					"__cHei": 39,
@@ -744,7 +744,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Groundtiles_static",
+					"__identifier": "Groundtiles_static_collision",
 					"__type": "Tiles",
 					"__cWid": 60,
 					"__cHei": 39,

@@ -1,5 +1,5 @@
 import pygame
-from .map import CsvMap, LDTKMap
+from .map.map import CsvMap, LDTKMap
 from .background import Background
 
 class World:
@@ -12,7 +12,7 @@ class World:
         self.bg = Background(self.game, self.config)
 
         self.map_output = self.map.draw_map(self.game.camera.scroll)
-        self.tile_list = self.map_output[1]
+        self.tiles = self.map_output[1]
         self.map_surf = self.map_output[0]
         
     def update(self, scroll):
