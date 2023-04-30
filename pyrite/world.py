@@ -1,5 +1,5 @@
 import pygame
-from .map.map import CsvMap, LDTKMap
+from .map import CsvMap, LDTKMap
 from .background import Background
 
 class World:

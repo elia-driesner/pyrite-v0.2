@@ -1,9 +1,9 @@
 import pygame, os, math
 from csv import reader
-from ..assets.sprite import Sprite
-from ..assets.json_loader import JsonLoader
-from ..assets.rect_cutter import cut_rect
-from ..assets.animation_loader import Animation
+from .assets.sprite import Sprite
+from .assets.json_loader import JsonLoader
+from .assets.rect_cutter import cut_rect
+from .assets.animation_loader import Animation
 
 class CsvMap():
     def __init__(self, tile_size, wn_size, map_path, sprite_path):

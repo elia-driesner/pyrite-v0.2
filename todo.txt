@@ -1,13 +1,8 @@
-chunks
 
 light
 
-particles
-
 flip image in every frame
 
-check if player is falling jumping etc.
-
-palette swapper
-
 sound
+
+custom code for tiles
