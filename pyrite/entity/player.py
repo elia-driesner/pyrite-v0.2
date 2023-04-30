@@ -41,6 +41,7 @@ class Player(PhysicalEntity):
         self.rect = cut_rect(self.image)
         self.rect_offset = (self.rect.x, self.rect.y)
         self.rect.x, self.rect.y = pos[0], pos[1]
+        self.weapon = None
         
         self.particle_managers.append(LandParticles())
         
