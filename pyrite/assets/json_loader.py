@@ -1,11 +1,6 @@
 import json
 
 class JsonLoader:
-    def read(self, path):
-        with open('data/settings/' + path, 'r') as file:
-            json_data = json.load(file)
-        return json_data
-    
     def read_path(self, path):
         with open(path, 'r') as file:
             json_data = json.load(file)

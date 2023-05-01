@@ -5,7 +5,6 @@ from .clock import Clock
 from .assets.config import Config
 from .inputs import Input
 from .entity.player import *
-from .entity.character import *
 from .functions import *
 
 def init(game, config_path):
@@ -17,6 +16,3 @@ def init(game, config_path):
     game.camera = Camera(game, game.settings['camera'])
     game.world = World(game, game.settings['world'])
     game.input = Input(game, game.settings['input'])
-    
-def player_init(game, player, img_path):
-    player.load_images()

@@ -10,12 +10,6 @@ from ..assets.palette_swap import PaletteSwap
 
 class Player(PhysicalEntity):
     def __init__(self, pos, player_data):
-        """
-        pos = player spawn
-        size = player size
-        type = None ?Playable or moved
-        image_info = None ?img_path, is_animated bool
-        """
         self.player_data = player_data
         
         self.character_name = self.player_data['name']
@@ -41,7 +35,6 @@ class Player(PhysicalEntity):
         self.rect = cut_rect(self.image)
         self.rect_offset = (self.rect.x, self.rect.y)
         self.rect.x, self.rect.y = pos[0], pos[1]
-        self.weapon = None
         
         self.particle_managers.append(LandParticles())
         

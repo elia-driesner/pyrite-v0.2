@@ -1,6 +1,6 @@
 import pygame 
 
-from .player import *
+from pyrite.entity.player import *
 
 def assign_character(name, pos):
     char = None

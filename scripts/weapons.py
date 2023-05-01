@@ -1,5 +1,5 @@
 import pygame
-from ..assets.rect_cutter import *
+from ..pyrite.assets.rect_cutter import *
 
 class Weapon:
     def __init__(self, name, image, config, pos):

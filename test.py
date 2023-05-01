@@ -1,16 +1,16 @@
 import pygame
 import pyrite
 
-from scripts.character import *
-
 class Game:
     def __init__(self):
         pygame.init()
-        self.run = True
+        
+        
         pyrite.init(self, 'data/settings')
         
-        self.player = assign_character('Carter', self.world.map_output[2])
-                
+        self.run = True
+        self.player = pyrite.assign_character('Carter', self.world.map_output[2])
+        
     def render(self):
         self.window.display.blit(game.world.map_surf, (0 - self.camera.scroll[0], 0 - self.camera.scroll[1]))
         self.player.update(self.input.key_events, self.clock.dt, self.world.tiles)
@@ -28,3 +28,4 @@ class Game:
         
 game = Game()
 game.loop()
+
