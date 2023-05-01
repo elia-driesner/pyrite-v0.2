@@ -14,25 +14,26 @@ class Weapon:
         self.angle = 0
         self.display_img = self.image
         self.rect = cut_rect(self.image)
+        self.render_offset = (0, 0)
         self.rect.x, self.rect.y = pos[0], pos[1]
         self.mouse_pos = [0, 0]
         
     def draw(self, wn, scroll):
-        wn.blit(self.display_img, (self.rect.x - scroll[0], self.rect.y - scroll[1]))
+        print(self.angle)
+        wn.blit(pygame.transform.rotate(self.image, self.angle), ((self.rect.x - self.render_offset[0]) - scroll[0], (self.rect.y - self.render_offset[1]) - scroll[1]))
             
     def update(self, mouse_pos, ent, scroll):
         self.mouse_pos = mouse_pos
         self.carrier = ent
-        self.rect.x = self.carrier.rect.center[0]
-        self.rect.y = self.carrier.rect.y - self.carrier.rect.h / 2
         self.calc_angle(scroll)
+        self.rect.center = self.carrier.rect.center
     
     def calc_angle(self, scroll):
-        self.mouse_pos = pygame.Vector2(self.mouse_pos)
-        self.p_screen_pos = pygame.Vector2((self.carrier.rect.x - scroll[0], self.carrier.rect.y - scroll[1]))
-        
-        angle = math.atan2(self.mouse_pos[1] - self.carrier.rect.y, self.mouse_pos[0] - self.carrier.rect.x)
-        self.display_img = pygame.transform.rotate(self.image, angle)
+        dx, dy = self.mouse_pos[0] - ((self.carrier.rect.x + (self.carrier.rect.w / 2)) - scroll[0]), self.mouse_pos[1] - ((self.carrier.y + (self.carrier.rect.h / 2)) - scroll[1])
+        angle_radians = math.atan2(dy, dx)
+        self.angle = math.degrees(angle_radians) * -1
+        self.display_img = pygame.transform.rotate(self.image, self.angle)
+        self.rect = self.display_img.get_rect()
 
 class Shotgun(Weapon):
     def __init__(self, ent, path):
