@@ -1,4 +1,4 @@
-from ..pyrite.entity.player import *
+from pyrite.entity.player import *
 
 class CustomPlayer(Player):
     def __init__(self, player_data, pos):
@@ -7,4 +7,4 @@ class CustomPlayer(Player):
         self.weapon = None
     
     def give_weapon(self, weapon):
-        pass
+        self.weapon = weapon

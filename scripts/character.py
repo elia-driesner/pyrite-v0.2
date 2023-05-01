@@ -2,6 +2,8 @@ import pygame
 
 from pyrite.entity.player import *
 
+from .custom_player import *
+
 def assign_character(name, pos):
     char = None
     basic_path = 'data/assets/player/'
@@ -16,23 +18,23 @@ def assign_character(name, pos):
     
     return char
         
-class LightMcSpeed(Player):
+class LightMcSpeed(CustomPlayer):
     def __init__(self, player_data, pos):
-        super().__init__(pos, player_data)
+        super().__init__(player_data, pos)
     
     def character_update(self):
         pass
         
-class Donald(Player):
+class Donald(CustomPlayer):
     def __init__(self, player_data, pos):
-        super().__init__(pos, player_data)
+        super().__init__(player_data, pos)
     
     def character_update(self):
         pass
         
-class Carter(Player):
+class Carter(CustomPlayer):
     def __init__(self, player_data, pos):
-        super().__init__(pos, player_data)
+        super().__init__(player_data, pos)
         self.is_flying = False
         
     def glide(self):
