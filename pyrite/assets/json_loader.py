@@ -13,3 +13,8 @@ class JsonLoader:
                 
         with open('self.path', 'w') as file:
             json.dump(json_data, file, indent=2)
+            
+def read_path(path):
+        with open(path, 'r') as file:
+            json_data = json.load(file)
+        return json_data

@@ -9,5 +9,14 @@ class CustomPlayer(Player):
     def give_weapon(self, weapon):
         self.weapon = weapon
         
-    def update(self, keys, dt, tile_list):
-        self.update_player(keys, dt, tile_list)
+    def render(self, wn, scroll):
+        self.draw(wn, scroll)
+        
+        if self.weapon:
+            self.weapon.draw(wn, scroll)
+        
+    def update(self, keys, dt, tile_list, scroll):
+        self.update_character(keys.key_events, dt, tile_list)
+        
+        if self.weapon:
+            self.weapon.update(keys.mouse_pos, self, scroll)
