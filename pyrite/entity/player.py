@@ -40,7 +40,7 @@ class Player(PhysicalEntity):
         
         # self.change_skin('Business')
         
-    def update(self, keys, dt, tile_list):
+    def update_player(self, keys, dt, tile_list):
         self.keys = keys
         self.character_update()
         self.calc_movement(self, keys, dt, tile_list)

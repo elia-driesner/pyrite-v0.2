@@ -8,3 +8,6 @@ class CustomPlayer(Player):
     
     def give_weapon(self, weapon):
         self.weapon = weapon
+        
+    def update(self, keys, dt, tile_list):
+        self.update_player(keys, dt, tile_list)

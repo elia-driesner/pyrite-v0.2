@@ -2,6 +2,7 @@ import pygame
 import pyrite
 
 from scripts.character import *
+from scripts.weapons import *
 
 class Game:
     def __init__(self):
