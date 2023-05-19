@@ -1,4 +1,4 @@
-from .window import Window
+from .window import *
 from .world import World
 from .camera import Camera
 from .clock import Clock
@@ -12,7 +12,7 @@ def init(game, config_path):
     game.settings = game.config.load_settings(config_path)
     
     game.clock = Clock(game.settings['clock'])
-    game.window = Window(game, game.settings['window'])
+    game.window = assign_window(game, game.settings['window'])
     game.camera = Camera(game, game.settings['camera'])
     game.world = World(game, game.settings['world'])
     game.input = Input(game, game.settings['input'])
